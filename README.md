@@ -8,10 +8,24 @@
 <details> 
 <summary><h2>🎯 Nuestros Objetivos</h2></summary>
   
-1. Recrear fielmente la interfaz de Windows 95 en un entorno web, utilizando tecnologías modernas como React y Tailwind CSS.
-2. Desarrollar minijuegos retro con mecánicas simples pero adictivas.
-3. Ofrecer una experiencia inmersiva de nostalgia mediante efectos visuales y sonidos auténticos.
+### **1. Recrear Fielmente la Interfaz de Windows 95**
+Nuestro principal objetivo es ofrecer una experiencia auténtica y nostálgica de Windows 95 en un entorno web moderno. Para lograrlo, nos enfocamos en el **diseño detallado**, buscando replicar elementos icónicos como el Menú Inicio, el escritorio, las ventanas redimensionables y los diálogos de sistema. 
+Asegurando a su vez que estos elementos tengan **interactividad** para permitir a los usuarios interactuar con la interfaz como lo harían en un sistema operativo real (arrastrar ventanas, hacer clic en el icono de Cachondino). También es importante mantener esa **estética retro**, ya sea manteniendo la paleta de colores, tipografías y efectos visuales propios de los años 90.
 
+### **2. Desarrollar juegos retro con nuestro toque personalizado**
+Queremos ofrecer una colección de juegos retro que combinen la nostalgia con mecánicas innovadoras. Haciendo **juegos clásicos reinventados**, creando variantes de juegos populares como el dinosaurio de Google, Snake o Buscaminas, añadiendo elementos únicos y desafíos nuevos.
+Siguiendo una **estética pixelada** utilizando gráficos en 8 y 16 bits para mantener la esencia retro, en juegos que serán simples, pero adictivos.
+
+### **3. Implementar un sistema de puntuaciones**
+Para fomentar la competencia y la rejugabilidad, nos proponemos:
+- **Guardar puntuaciones**: Utilizar Firebase Firestore para almacenar los resultados de los jugadores de manera segura y eficiente.
+- **Tabla de líderes**: Mostrar los mejores puntajes por juego, permitiendo a los usuarios competir por el primer lugar.
+
+### **4. Ofrecer una Experiencia Inmersiva**
+Buscamos que los usuarios se sientan transportados a los años 90 mediante:
+- **Efectos visuales**: Emular una pantalla CRT con filtros CSS.
+- **Sonidos auténticos**: Integración de efectos de sonido y música retro, como los sonidos de inicio de Windows 95 o melodías en 8 bits.
+- **Easter eggs**: Esconder detalles humorísticos y referencias culturales de los creadores para sorprender a los usuarios.
 </details> 
 
 <details>
