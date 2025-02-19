@@ -10,7 +10,7 @@
   
 ### **1. Recrear Fielmente la Interfaz de Windows 95**
 Nuestro principal objetivo es ofrecer una experiencia auténtica y nostálgica de Windows 95 en un entorno web moderno. Para lograrlo, nos enfocamos en el **diseño detallado**, buscando replicar elementos icónicos como el Menú Inicio, el escritorio, las ventanas redimensionables y los diálogos de sistema. 
-Asegurando a su vez que estos elementos tengan **interactividad** para permitir a los usuarios interactuar con la interfaz como lo harían en un sistema operativo real (arrastrar ventanas, hacer clic en el icono de Cachondino). También es importante mantener esa **estética retro**, ya sea manteniendo la paleta de colores, tipografías y efectos visuales propios de los años 90.
+Asegurando a su vez que estos elementos tengan **interactividad**, para permitir a los usuarios interactuar con la interfaz como lo harían en un sistema operativo real (arrastrar ventanas, hacer clic en el icono de Cachondino). También es importante mantener esa **estética retro**, ya sea manteniendo la paleta de colores, tipografías y efectos visuales propios de los años 90.
 
 ### **2. Desarrollar juegos retro con nuestro toque personalizado**
 Queremos ofrecer una colección de juegos retro que combinen la nostalgia con mecánicas innovadoras. Haciendo **juegos clásicos reinventados**, creando variantes de juegos populares como el dinosaurio de Google, Snake o Buscaminas, añadiendo elementos únicos y desafíos nuevos.
