@@ -52,7 +52,9 @@ Buscamos que los usuarios se sientan transportados a los años 90 mediante:
 <details> <summary><h2>💻Pagina Web</h2></summary> 
 
 - <details> <summary><h2>💭Mockup</h2></summary>
+  En esta captura, se muestra el escritorio de Papua95, donde se recrea con algunos cambios la estética clásica de Windows 95. También se observa el Menú Inicio desplegado con las opciones típicas.
   <img src="mockups/mockup1.png" alt="Menú Inicio de Windows 95" width="600" />
+  
   </details> 
 
 - <details> <summary><h2>🎨Paleta De Colores</h2></summary></details> 
