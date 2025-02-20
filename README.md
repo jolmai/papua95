@@ -51,7 +51,9 @@ Buscamos que los usuarios se sientan transportados a los años 90 mediante:
 
 <details> <summary><h2>💻Pagina Web</h2></summary> 
 
-- <details> <summary><h2>💭Mockup</h2></summary></details> 
+- <details> <summary><h2>💭Mockup</h2></summary>
+  <img src="mockups/mockup1.png" alt="Menú Inicio de Windows 95" width="600" />
+  </details> 
 
 - <details> <summary><h2>🎨Paleta De Colores</h2></summary></details> 
 
