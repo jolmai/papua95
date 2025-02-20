@@ -46,7 +46,18 @@ Buscamos que los usuarios se sientan transportados a los años 90 mediante:
 </details> 
 
 <details> <summary><h2>📈 Diagramas</h2></summary>
-  
+
+  <details> <summary><h3>Base de datos</h3></summary>
+    <img src="diagramas/diagrama-bbdd.png" alt="Diagrama base de datos" width="500"/>
+  </details>
+
+  <details> <summary><h3>Casos de uso</h3></summary>
+    <img src="diagramas/Casos de uso.png" alt="Diagrama base de datos" width="500"/>
+  </details>
+
+  <details> <summary><h3>Casos de secuencia</h3></summary>
+    <img src="diagramas/Casos de secuencia.png" alt="Diagrama base de datos" width="500"/>
+  </details>
 </details>
 
 <details> <summary><h2>💻Pagina Web</h2></summary> 
@@ -89,3 +100,7 @@ Buscamos que los usuarios se sientan transportados a los años 90 mediante:
 </details> 
 
 <details> <summary><h2>Roadmap/Trello/Gantt</h2></summary>
+  
+https://trello.com/b/qfb03lwb/project-kigger 
+
+</details>
