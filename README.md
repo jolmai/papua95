@@ -51,17 +51,26 @@ Buscamos que los usuarios se sientan transportados a los años 90 mediante:
 
 <details> <summary><h2>💻Pagina Web</h2></summary> 
 
-- <details> <summary><h2>💭Mockup</h2></summary>
-  En esta captura, se muestra el escritorio de Papua95, donde se recrea con algunos cambios la estética clásica de Windows 95. También se observa el Menú Inicio desplegado con las opciones típicas.
-  <img src="mockups/mockup1.png" alt="Menú Inicio de Windows 95" width="600" />
+  <details> <summary><h3>💭Mockup</h3></summary>
+  En esta captura, se muestra el escritorio donde se recrea con algunos cambios la estética clásica de Windows 95. También se observa el Menú Inicio desplegado con las opciones típicas.
+
+  <img src="mockups/mockup1.png" alt="Menú Inicio de Windows 95" width="800"/>
+  
+  Esta captura muestra una carpeta abierta, los usuarios pueden navegar por directorios virtuales simulando la experiencia clásica.
+  
+  <img src="mockups/mockup2.png" alt="Carpeta abierta" width="600"/>
+
+  Esta captura muestra un juego abierto, los usuarios pueden jugar en la web simulando la experiencia clásica.
+  
+  <img src="mockups/mockup3.png" alt="Juego abierto" width="600"/>
   
   </details> 
 
-- <details> <summary><h2>🎨Paleta De Colores</h2></summary></details> 
+ <details> <summary><h3>🎨Paleta De Colores</h3></summary></details> 
 
-- <details> <summary><h2>👀Logo</h2></summary></details> 
+ <details> <summary><h3>👀Logo</h3></summary></details> 
 
-- <details> <summary><h2>🔗Funcionalidades Web</h2></summary></details> 
+ <details> <summary><h3>🔗Funcionalidades Web</h3></summary></details> 
 </details> 
 
 <details> <summary><h2>Roadmap/Trello/Gantt</h2></summary>
