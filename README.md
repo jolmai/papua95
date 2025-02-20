@@ -37,7 +37,7 @@ Buscamos que los usuarios se sientan transportados a los años 90 mediante:
 - **Tailwind CSS**: Para estilos personalizados y un diseño responsive, empleamos **Tailwind CSS**. Tailwind nos permite aplicar estilos directamente en el markup mediante clases utilitarias, lo que agiliza el desarrollo y facilita la creación de diseños consistentes y modernos sin perder la estética retro.
 
 ### **Desarrollo de Juegos**
-- **Canvas**: Para los juegos retro, utilizamos **Canvas**, una API de gráficos en 2D integrada en HTML5. Canvas nos permite dibujar gráficos, animaciones y gestionar interacciones directamente en el navegador, lo que es ideal para juegos simples como el clásico Snake, el dinosaurio de Google o un Buscaminas.
+- **Canvas**: Para los juegos retro, utilizamos Canvas, una API de gráficos en 2D integrada en HTML5. Canvas nos permite dibujar gráficos, animaciones y gestionar interacciones directamente en el navegador, lo que es ideal para juegos simples como el clásico Snake, el dinosaurio de Google o un Buscaminas.
 - **Godot**: Para los juegos más complejos, Godot es una herramienta potente y flexible que nos permite crear juegos 2D y 3D con lógica avanzada. Exportamos los juegos desarrollados en Godot a formatos compatibles con la web (como WebAssembly) para integrarlos en nuestro proyecto.
 
 ### **Backend y Base de Datos**
@@ -45,7 +45,9 @@ Buscamos que los usuarios se sientan transportados a los años 90 mediante:
   
 </details> 
 
-<details> <summary><h2>📈 Diagramas</h2></summary></details>
+<details> <summary><h2>📈 Diagramas</h2></summary>
+  
+</details>
 
 <details> <summary><h2>💻Pagina Web</h2></summary> 
 
