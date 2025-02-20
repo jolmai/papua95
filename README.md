@@ -66,11 +66,26 @@ Buscamos que los usuarios se sientan transportados a los años 90 mediante:
   
   </details> 
 
- <details> <summary><h3>🎨Paleta De Colores</h3></summary></details> 
+ <details> <summary><h3>🎨Paleta De Colores</h3></summary>
+
+ <img src="mockups/paleta.png" alt="Juego abierto" width="600"/>
+ 
+ </details> 
 
  <details> <summary><h3>👀Logo</h3></summary></details> 
 
- <details> <summary><h3>🔗Funcionalidades Web</h3></summary></details> 
+ <details> <summary><h3>🔗Funcionalidades Web</h3></summary>
+   
+1. **Interfaz de Windows 95**: Menú Inicio, ventanas, escritorio.
+2. **Juegos Retro**:
+   - Cachondino 2 Definitive Edition
+   - La rana marrana
+3. **Sistema de Puntuaciones**:
+   - Guardar puntuaciones en tiempo real.
+   - Tabla de líderes por juego top 10.
+4. **Efectos Visuales/Sonidos**: CRT filter, sonidos de Windows 95.
+ 
+ </details> 
 </details> 
 
 <details> <summary><h2>Roadmap/Trello/Gantt</h2></summary>
