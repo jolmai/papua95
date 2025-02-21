@@ -52,11 +52,11 @@ Buscamos que los usuarios se sientan transportados a los años 90 mediante:
   </details>
 
   <details> <summary><h3>Casos de uso</h3></summary>
-    <img src="diagramas/Casos de uso.png" alt="Diagrama base de datos" width="500"/>
+    <img src="diagramas/Casos de uso.png" alt="Diagrama casos de uso" width="500"/>
   </details>
 
   <details> <summary><h3>Casos de secuencia</h3></summary>
-    <img src="diagramas/Casos de secuencia.png" alt="Diagrama base de datos" width="500"/>
+    <img src="diagramas/Casos de secuencia.png" alt="Diagrama casos de secuencia" width="500"/>
   </details>
 </details>
 
@@ -83,7 +83,11 @@ Buscamos que los usuarios se sientan transportados a los años 90 mediante:
  
  </details> 
 
- <details> <summary><h3>👀Logo</h3></summary></details> 
+ <details> <summary><h3>👀Logo</h3></summary>
+
+ <img src="mockups/logo.png" alt="logo de papua" width="150"/>
+ 
+ </details> 
 
  <details> <summary><h3>🔗Funcionalidades Web</h3></summary>
    
