@@ -2,7 +2,7 @@ import React from 'react';
 import { StrictMode } from 'react';
 import ReactDOM from 'react-dom/client';
 import { createGlobalStyle } from 'styled-components';
-import WinToolbar from './WinToolbar.jsx'
+import WinToolbar from './componentes/WinToolbar.jsx'
 
 const GlobalStyles = createGlobalStyle`
   body {
