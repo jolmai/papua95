@@ -6,7 +6,6 @@ import logo from '../assets/img/logo.png';
 import '../assets/css/toolbar.css';
 
 
-
 function WinToolbar() {
   return (
     <ThemeProvider theme={original}>
