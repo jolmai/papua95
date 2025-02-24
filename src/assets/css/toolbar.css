@@ -1,7 +1,24 @@
 .toolbarposition {
-    top: auto !important;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 50px;
-  }
+  top: auto !important;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+}
+
+.listaMenu{
+  position: absolute !important;
+  left: 0;
+  bottom: 100%;
+  margin: 0;
+  padding: 0;
+}
+.itemMenu{
+  padding-right: 100px !important;
+}
+.itemFlex{
+  display: flex !important;
+  justify-content: space-between !important; 
+  align-items: center;
+  gap: 10px;
+}
