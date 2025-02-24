@@ -5,6 +5,14 @@
   right: 0;
   height: 50px;
 }
+.toolbarFlex{
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center;
+}
+.hora{
+  padding: 5px 15px;
+}
 
 .listaMenu{
   position: absolute !important;
