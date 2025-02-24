@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { Button, AppBar, Toolbar, MenuList, MenuListItem, Separator} from 'react95';
+import { Button, AppBar, Toolbar, MenuList, MenuListItem, Separator, Tooltip} from 'react95';
 import { ThemeProvider } from 'styled-components';
 import original from 'react95/dist/themes/original';
 import logo from '../assets/img/logo.png';
@@ -11,6 +11,7 @@ import documentos from '../assets/img/iconos/web-documents.ico';
 import find from '../assets/img/iconos/find.ico';
 import ejecutar from '../assets/img/iconos/run.ico';
 import '../assets/css/toolbar.css';
+import TiempoActual from './TiempoActual.jsx'
 
 function MenuItem({icono, alter, texto}) {
   return (
@@ -30,13 +31,12 @@ function WinToolbar() {
   return (
     <ThemeProvider theme={original}>
       <AppBar className='toolbarposition'>
-        <Toolbar>
-          <div>
+        <Toolbar className='toolbarFlex'>
             <Button
               onClick={() => setOpen(!open)}
               active={open}
             >
-            <img src={logo} alt="logo papua" style={{height: '30px', marginRight: '10px'}}/>
+            <img src={logo} alt="logo papua" style={{height: '25px', marginRight: '10px'}}/>
             Inicio</Button>
             {open && (
               <MenuList className='listaMenu' onClick={() => setOpen(false)}>
@@ -50,9 +50,10 @@ function WinToolbar() {
                 <MenuItem icono={apagar} alt={'icono-apagar'} texto='Apagar' />
               </MenuList>
             )}
-          </div>
+            <Tooltip text= 'Hora local (CET)' enterDelay={100} leaveDelay={100}>
+              <TiempoActual />
+            </Tooltip> 
         </Toolbar>
-        
       </AppBar>
     </ThemeProvider>
   );
