@@ -85,7 +85,7 @@ Buscamos que los usuarios se sientan transportados a los años 90 mediante:
 
  <details> <summary><h3>👀Logo</h3></summary>
 
- <img src="mockups/logo.png" alt="logo de papua" width="150"/>
+ <img src="src/assets/img/logo.png" alt="logo de papua" width="150"/>
  
  </details> 
 
