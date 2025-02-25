@@ -30,3 +30,13 @@
   align-items: center;
   gap: 10px;
 }
+
+.window {
+  min-width: 300px;
+}
+
+.window-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

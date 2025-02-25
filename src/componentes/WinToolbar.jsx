@@ -13,10 +13,11 @@ import ejecutar from '../assets/img/iconos/run.ico';
 import '../assets/css/toolbar.css';
 import TiempoActual from './TiempoActual.jsx'
 import PropTypes from 'prop-types';
+import Buscador from './Buscador.jsx';
 
-function MenuItem({icono, alter, texto}) {
+function MenuItem({icono, alter, texto, onClick}) {
   return (
-    <MenuListItem className='itemMenu'>
+    <MenuListItem className='itemMenu' onClick={onClick}>
       <div className='itemFlex'>
         <img src={icono} alt={alter} style={{height: '30px', marginRight: '10px'}}/>
         {texto}
@@ -28,12 +29,27 @@ function MenuItem({icono, alter, texto}) {
 MenuItem.propTypes = {
   icono: PropTypes.string.isRequired,
   alter: PropTypes.string.isRequired,
-  texto: PropTypes.string.isRequired
+  texto: PropTypes.string.isRequired,
+  onClick: PropTypes.func
 };
 
 function WinToolbar() {
   const [open, setOpen] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   const menuRef = useRef(null);
+
+  const cerrarVentana = () => {
+    window.close();
+  };
+
+  const abrirCarpeta = () => {
+
+  };
+
+  const abrirBuscador = () => {
+    setShowSearch(true);
+    setOpen(false);
+  };
 
   useEffect(() => {
     function handleClickOutside(event) {
@@ -48,6 +64,7 @@ function WinToolbar() {
 
   return (
     <ThemeProvider theme={original}>
+      {showSearch && <Buscador onClose={() => setShowSearch(false)} />}
       <AppBar className='toolbarposition'>
         <Toolbar className='toolbarFlex'>
           <div ref={menuRef}>
@@ -60,14 +77,46 @@ function WinToolbar() {
             </Button>
             {open && (
               <MenuList className='listaMenu' onClick={() => setOpen(false)}>
-                <MenuItem icono={programas} alt={'icono-programas'} texto='Programas' />
-                <MenuItem icono={documentos} alt={'icono-documentos'} texto='Documentos' />
-                <MenuItem icono={configuracion} alt={'icono-configuracion'} texto='Configuración' />
-                <MenuItem icono={find} alt={'icono-buscar'} texto='Buscar' />
-                <MenuItem icono={libro} alt={'icono-ayuda'} texto='Ayuda' />
-                <MenuItem icono={ejecutar} alt={'icono-ejecutar'} texto='Ejecutar...' />
+                <MenuItem 
+                  icono={programas} 
+                  alt={'icono-programas'} 
+                  texto='Programas' 
+                  onClick={abrirCarpeta}
+                />
+                <MenuItem 
+                  icono={documentos} 
+                  alt={'icono-documentos'} 
+                  texto='Documentos' 
+                  onClick={abrirCarpeta}
+                />
+                <MenuItem 
+                  icono={configuracion} 
+                  alt={'icono-configuracion'} 
+                  texto='Configuración' 
+                />
+                <MenuItem 
+                  icono={find} 
+                  alt={'icono-buscar'} 
+                  texto='Buscar' 
+                  onClick={abrirBuscador}
+                />
+                <MenuItem 
+                  icono={libro} 
+                  alt={'icono-ayuda'} 
+                  texto='Ayuda' 
+                />
+                <MenuItem 
+                  icono={ejecutar} 
+                  alt={'icono-ejecutar'} 
+                  texto='Ejecutar...' 
+                />
                 <Separator />
-                <MenuItem icono={apagar} alt={'icono-apagar'} texto='Apagar' />
+                <MenuItem 
+                  icono={apagar} 
+                  alt={'icono-apagar'} 
+                  texto='Apagar' 
+                  onClick={cerrarVentana}
+                />
               </MenuList>
             )}
           </div>
