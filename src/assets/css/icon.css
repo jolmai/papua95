@@ -1,4 +1,4 @@
-p {
+.nombreIcono {
     color: white;
     margin: 0;
     text-align: center;
@@ -19,5 +19,25 @@ p {
     cursor: pointer;
     padding: 8px;
     min-width: 75px;
-    border: 0px !important;
+    border: 0 !important;
+}
+
+.ventanaCompleta {
+    width: 400px;
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.barraVentana {
+    background-color: #001BA4;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px !important;
+    margin: 0;
+    border: 0 !important;
+    border-bottom: 2px solid black !important;
+    color: white;
 }
