@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Frame, Tooltip, Window, WindowContent, WindowHeader, Button } from 'react95';
+import { ThemeProvider } from 'styled-components';
+import original from 'react95/dist/themes/original';
 import MiPC from '../assets/img/iconos/mipc.ico';
 import Papelera from '../assets/img/iconos/papelera.ico';
 import Carpeta from '../assets/img/iconos/carpeta.ico';
@@ -8,7 +10,7 @@ import '../assets/css/icon.css';
 function Iconos ({icono, alter, nombre, idIcono, onClick}) {
     return(
         <Tooltip style={{backgroundColor: 'white'}} text={nombre} enterDelay={100} leaveDelay={100} position='bottom'>
-        <Frame className='icono' onClick={() => onClick(idIcono)}>
+        <Frame variant="well" className='icono' onClick={() => onClick(idIcono)}>
             <img src={icono} alt={alter} style={{width: '50px'}}/>
             <p className='nombreIcono'>{nombre}</p>
         </Frame>
@@ -29,7 +31,7 @@ function IconosEscritorio() {
     };
 
     return(
-        <>
+        <ThemeProvider theme={original}>
             <div className='containerIconos'>
                 <Iconos icono={MiPC} alter={'icono-mipc'} nombre={'Mi Pc'} idIcono={'mipc'} onClick={cogerClickIcono}/>
                 <Iconos icono={Papelera} alter={'icono-papelera'} nombre={'Papelera'} idIcono={'papelera'} onClick={cogerClickIcono}/>
@@ -59,7 +61,7 @@ function IconosEscritorio() {
                     </WindowContent>    
                 </Window>
             )}
-        </>
+        </ThemeProvider>
     );
 }
 
