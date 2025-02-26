@@ -42,10 +42,14 @@ function IconosEscritorio() {
                 <Window resizable className='ventanaCompleta'> 
                     <WindowHeader className='barraVentana'>
                         <p>Mi PC</p>
-                        <Button onClick={cerrarVentana} style={{ marginLeft: 'auto' }}>X</Button>
+                        <Button onClick={cerrarVentana}>
+                            <span style={{ fontWeight: 'bold' }}>X</span>
+                        </Button>
                     </WindowHeader>
-                    <WindowContent style={{backgroundColor: 'white'}}>
-                        <p>Papua manda</p>
+                    <WindowContent>
+                        <Frame variant='field' style={{height: '100%', width: '100%'}}>
+                            <p style={{marginLeft: '5px'}}>Papua manda</p>
+                        </Frame>
                     </WindowContent>
                     
                 </Window>
@@ -54,10 +58,29 @@ function IconosEscritorio() {
                 <Window resizable className='ventanaCompleta'> 
                     <WindowHeader className='barraVentana'>
                         <p>Papelera</p>
-                        <Button onClick={cerrarVentana}>X</Button>
+                        <Button onClick={cerrarVentana}>
+                            <span style={{ fontWeight: 'bold' }}>X</span>
+                        </Button>
                     </WindowHeader>
-                    <WindowContent style={{backgroundColor: 'white'}}>
-                        <p>papelera</p>
+                    <WindowContent>
+                        <Frame variant='field' style={{height: '100%', width: '100%'}}>
+                            <p style={{marginLeft: '5px'}}>Papua manda</p>
+                        </Frame>
+                    </WindowContent>    
+                </Window>
+            )}
+            {ventanaAbierta === 'funda' && (
+                <Window resizable className='ventanaCompleta'> 
+                    <WindowHeader className='barraVentana'>
+                        <p>La Funda</p>
+                        <Button onClick={cerrarVentana}>
+                            <span style={{ fontWeight: 'bold' }}>X</span>
+                        </Button>
+                    </WindowHeader>
+                    <WindowContent>
+                        <Frame variant='field' style={{height: '100%', width: '100%'}}>
+                            <p style={{marginLeft: '5px'}}>Papua manda</p>
+                        </Frame>
                     </WindowContent>    
                 </Window>
             )}
