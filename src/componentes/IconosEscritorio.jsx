@@ -6,71 +6,39 @@ import MiPC from '../assets/img/iconos/mipc.ico';
 import Papelera from '../assets/img/iconos/papelera.ico';
 import Carpeta from '../assets/img/iconos/carpeta.ico';
 import '../assets/css/icon.css';
-
-function Iconos ({icono, alter, nombre, idIcono, onClick}) {
-    return(
-        <Tooltip style={{backgroundColor: 'white'}} text={nombre} enterDelay={100} leaveDelay={100} position='bottom'>
-        <Frame variant="well" className='icono' onClick={() => onClick(idIcono)}>
-            <img src={icono} alt={alter} style={{width: '50px'}}/>
-            <p className='nombreIcono'>{nombre}</p>
-        </Frame>
-        </Tooltip>
-    );
-}
+import Icono from './Iconos.jsx';
+import VentanaPapelera from './VentanaPapelera.jsx';
 
 function IconosEscritorio() {
 
     const[ventanaAbierta, eligeVentanaAbierta] = useState(null);
+    const [carpetaAbierta, eligeCarpetaAbierta] = useState(null);
 
-    const cogerClickIcono = (ventana) => {
-        eligeVentanaAbierta(ventana);
+    const cogerClickIcono = (idIcono) => {
+        if (idIcono === 'funda')
+        {
+            eligeCarpetaAbierta('funda');
+        }
+        else {
+            eligeVentanaAbierta(idIcono);
+        }       
     };
 
     const cerrarVentana = () => {
         eligeVentanaAbierta(null);
+        eligeCarpetaAbierta(null);
     };
 
     return(
         <ThemeProvider theme={original}>
             <div className='containerIconos'>
-                <Iconos icono={MiPC} alter={'icono-mipc'} nombre={'Mi Pc'} idIcono={'mipc'} onClick={cogerClickIcono}/>
-                <Iconos icono={Papelera} alter={'icono-papelera'} nombre={'Papelera'} idIcono={'papelera'} onClick={cogerClickIcono}/>
-                <Iconos icono={Carpeta} alter={'icono-carpeta'} nombre={'La funda'} idIcono={'funda'} onClick={cogerClickIcono}/>
+                <Icono icono={MiPC} alter={'icono-mipc'} nombre={'Mi Pc'} idIcono={'mipc'} onClick={cogerClickIcono}/>
+                <Icono icono={Papelera} alter={'icono-papelera'} nombre={'Papelera'} idIcono={'papelera'} onClick={cogerClickIcono}/>
+                <Icono icono={Carpeta} alter={'icono-carpeta'} nombre={'La funda'} idIcono={'funda'} onClick={cogerClickIcono}/>
             </div>
-
-            {ventanaAbierta === 'mipc' && (
-                <Window resizable className='ventanaCompleta'> 
-                    <WindowHeader className='barraVentana'>
-                        <p>Mi PC</p>
-                        <Button onClick={cerrarVentana}>
-                            <span style={{ fontWeight: 'bold' }}>X</span>
-                        </Button>
-                    </WindowHeader>
-                    <WindowContent>
-                        <Frame variant='field' style={{height: '100%', width: '100%'}}>
-                            <p style={{marginLeft: '5px'}}>Papua manda</p>
-                        </Frame>
-                    </WindowContent>
-                    
-                </Window>
-            )}
-            {ventanaAbierta === 'papelera' && (
-                <Window resizable className='ventanaCompleta'> 
-                    <WindowHeader className='barraVentana'>
-                        <p>Papelera</p>
-                        <Button onClick={cerrarVentana}>
-                            <span style={{ fontWeight: 'bold' }}>X</span>
-                        </Button>
-                    </WindowHeader>
-                    <WindowContent>
-                        <Frame variant='field' style={{height: '100%', width: '100%'}}>
-                            <p style={{marginLeft: '5px'}}>Papua manda</p>
-                        </Frame>
-                    </WindowContent>    
-                </Window>
-            )}
-            {ventanaAbierta === 'funda' && (
-                <Window resizable className='ventanaCompleta'> 
+            {ventanaAbierta === 'papelera' && <VentanaPapelera onClose={cerrarVentana} />}
+            {carpetaAbierta === 'funda' && (
+                <Window resizable className='ventanaCompleta'>
                     <WindowHeader className='barraVentana'>
                         <p>La Funda</p>
                         <Button onClick={cerrarVentana}>
@@ -78,10 +46,8 @@ function IconosEscritorio() {
                         </Button>
                     </WindowHeader>
                     <WindowContent>
-                        <Frame variant='field' style={{height: '100%', width: '100%'}}>
-                            <p style={{marginLeft: '5px'}}>Papua manda</p>
-                        </Frame>
-                    </WindowContent>    
+                        <p>Contenido de La Funda...</p>
+                    </WindowContent>
                 </Window>
             )}
         </ThemeProvider>
