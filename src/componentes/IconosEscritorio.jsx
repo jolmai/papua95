@@ -13,21 +13,32 @@ import VentanaJuego from './VentanaJuego.jsx';
 
 function IconosEscritorio() {
 
-    const[ventanaAbierta, eligeVentanaAbierta] = useState(null);
+    const [ventanaAbierta, eligeVentanaAbierta] = useState([]);
     const [carpetaAbierta, eligeCarpetaAbierta] = useState(null);
 
-    const cogerClickIcono = (idIcono) => {
-        if (idIcono === 'funda')
-        {
-            eligeCarpetaAbierta('funda');
-        }
-        else {
-            eligeVentanaAbierta(idIcono);
-        }       
+    const abrirVentana = (id, tipo) => {
+        const nuevaVentana = {
+            id: `${tipo}-${Date.now()}`,
+            tipo,
+            idJuego: id,
+            posicion: { x: Math.random() * 200, y: Math.random() * 200 }, 
+        };
+        eligeVentanaAbierta([...ventanaAbierta, nuevaVentana]);
     };
 
-    const cerrarVentana = () => {
-        eligeVentanaAbierta(null);
+    const cerrarVentana = (id) => {
+        eligeVentanaAbierta(ventanaAbierta.filter((ventana) => ventana.id !== id));
+    };
+
+    const cogerClickIcono = (idIcono) => {
+        if (idIcono === 'funda') {
+            eligeCarpetaAbierta('funda');
+        } else {
+            abrirVentana(idIcono, idIcono);
+        }
+    };
+   
+    const cerrarCarpeta = () => {
         eligeCarpetaAbierta(null);
     };
 
@@ -38,13 +49,37 @@ function IconosEscritorio() {
                 <Icono icono={Papelera} alter={'icono-papelera'} nombre={'Papelera'} idIcono={'papelera'} onClick={cogerClickIcono}/>
                 <Icono icono={Carpeta} alter={'icono-carpeta'} nombre={'La funda'} idIcono={'funda'} onClick={cogerClickIcono}/>
             </div>
-            {ventanaAbierta === 'papelera' && <VentanaPapelera onClose={cerrarVentana} />}
-            {ventanaAbierta === 'mipc' && <VentanaMiPC onClose={cerrarVentana} />}
-            {carpetaAbierta === 'funda' && <Funda eligeVentanaAbierta={eligeVentanaAbierta} onClose={cerrarVentana} /> }
-
-            {ventanaAbierta && ventanaAbierta !== 'papelera' && ventanaAbierta !== 'mipc' && (
-                <VentanaJuego idJuego={ventanaAbierta} onClose={cerrarVentana}/>
-            )}
+            
+            {carpetaAbierta === 'funda' && <Funda eligeVentanaAbierta={abrirVentana} onClose={cerrarCarpeta} /> }
+            {ventanaAbierta.map((ventana) => {
+            if (ventana.tipo === 'mipc') {
+                return (
+                    <VentanaMiPC
+                        key={ventana.id}
+                        onClose={() => cerrarVentana(ventana.id)}
+                        posicion={ventana.posicion} // Pasa la posición
+                    />
+                );
+            } else if (ventana.tipo === 'papelera') {
+                return (
+                    <VentanaPapelera
+                        key={ventana.id}
+                        onClose={() => cerrarVentana(ventana.id)}
+                        posicion={ventana.posicion} // Pasa la posición
+                    />
+                );
+            } else if (ventana.tipo === 'juego') {
+                return (
+                    <VentanaJuego
+                        key={ventana.id}
+                        idJuego={ventana.idJuego}
+                        onClose={() => cerrarVentana(ventana.id)}
+                        posicion={ventana.posicion} // Pasa la posición
+                    />
+                );
+            }
+            return null;
+        })}
         </ThemeProvider>
     );
 }
