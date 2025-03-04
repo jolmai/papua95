@@ -1,6 +1,6 @@
 import React from "react";
-import Ventana from "./Ventana";
-import { Juegos } from './Juegos';
+import Ventana from "./Ventana.jsx";
+import  Juegos  from './Juegos.js';
 
 function VentanaJuego({idJuego, onClose}) {
     const juego = Juegos.find((juego) => juego.id === idJuego);
@@ -9,8 +9,8 @@ function VentanaJuego({idJuego, onClose}) {
     return(
         <Ventana titulo={juego.nombre} onClose={onClose}>
             <iframe
-                src='{juego.iframeSrc}'
-                title='{juego.nombre}'
+                src={juego.iframeSrc}
+                title={juego.nombre}
                 allow='autoplay; fullscreen'
             />
         </Ventana>
