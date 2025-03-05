@@ -6,8 +6,8 @@ function VentanaPapelera({onClose, posicion}){
         <Ventana titulo='Papelera' onClose={onClose}
         style={{ 
             position: 'absolute',
-            left: `${posicion.x}px`, // Posición X
-            top: `${posicion.y}px`, // Posición Y
+            left: `${posicion.x}px`,
+            top: `${posicion.y}px`,
         }}
         >
             <p>Papeleron bbbe</p>

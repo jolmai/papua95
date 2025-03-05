@@ -6,8 +6,8 @@ function VentanaMiPC({onClose, posicion}){
         <Ventana titulo='MiPC' onClose={onClose}
         style={{ 
             position: 'absolute',
-            left: `${posicion.x}px`, // Posición X
-            top: `${posicion.y}px`, // Posición Y
+            left: `${posicion.x}px`,
+            top: `${posicion.y}px`,
         }}
         >
             <p>Mipc bebe</p>

@@ -10,6 +10,7 @@ import Funda from './Funda.jsx';
 import VentanaPapelera from './VentanaPapelera.jsx';
 import VentanaMiPC from './VentanaMiPC.jsx';
 import VentanaJuego from './VentanaJuego.jsx';
+import WinToolbar from './WinToolbar.jsx';
 
 function IconosEscritorio() {
 
@@ -21,7 +22,8 @@ function IconosEscritorio() {
             id: `${tipo}-${Date.now()}`,
             tipo,
             idJuego: id,
-            posicion: { x: Math.random() * 200, y: Math.random() * 200 }, 
+            posicion: { x: Math.random() * (window.innerWidth - 300), y: Math.random() * (window.innerHeight - 200) }, 
+            icono: tipo === 'mipc' ? MiPC : tipo === 'papelera' ? Papelera : Carpeta,
         };
         eligeVentanaAbierta([...ventanaAbierta, nuevaVentana]);
     };
@@ -42,6 +44,16 @@ function IconosEscritorio() {
         eligeCarpetaAbierta(null);
     };
 
+    const focusVentana = (id) => {
+ 
+        const ventana = ventanaAbierta.find((v) => v.id === id);
+        if (ventana) {
+            const nuevasVentanas = ventanaAbierta.filter((v) => v.id !== id);
+            nuevasVentanas.push(ventana);
+            eligeVentanaAbierta(nuevasVentanas);
+        }
+    };
+
     return(
         <ThemeProvider theme={original}>
             <div className='containerIconos'>
@@ -57,7 +69,8 @@ function IconosEscritorio() {
                     <VentanaMiPC
                         key={ventana.id}
                         onClose={() => cerrarVentana(ventana.id)}
-                        posicion={ventana.posicion} // Pasa la posición
+                        posicion={ventana.posicion}
+                        isFocused={ventanaAbierta[ventanaAbierta.length - 1].id === ventana.id}
                     />
                 );
             } else if (ventana.tipo === 'papelera') {
@@ -65,7 +78,8 @@ function IconosEscritorio() {
                     <VentanaPapelera
                         key={ventana.id}
                         onClose={() => cerrarVentana(ventana.id)}
-                        posicion={ventana.posicion} // Pasa la posición
+                        posicion={ventana.posicion}
+                        isFocused={ventanaAbierta[ventanaAbierta.length - 1].id === ventana.id}
                     />
                 );
             } else if (ventana.tipo === 'juego') {
@@ -74,12 +88,14 @@ function IconosEscritorio() {
                         key={ventana.id}
                         idJuego={ventana.idJuego}
                         onClose={() => cerrarVentana(ventana.id)}
-                        posicion={ventana.posicion} // Pasa la posición
+                        posicion={ventana.posicion} 
+                        isFocused={ventanaAbierta[ventanaAbierta.length - 1].id === ventana.id}
                     />
                 );
             }
             return null;
         })}
+        <WinToolbar ventanasAbiertas={ventanaAbierta} onFocusVentana={focusVentana} />
         </ThemeProvider>
     );
 }

@@ -33,7 +33,7 @@ MenuItem.propTypes = {
   onClick: PropTypes.func
 };
 
-function WinToolbar() {
+function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
   const [open, setOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const menuRef = useRef(null);
@@ -120,6 +120,17 @@ function WinToolbar() {
               </MenuList>
             )}
           </div>
+
+          <div style={{ display: 'flex', gap: '10px', marginLeft: '20px' }}>
+              {ventanasAbiertas.map((ventana) => (
+                  <Tooltip key={ventana.id} text={ventana.nombre} enterDelay={100} leaveDelay={100}>
+                      <Button onClick={() => onFocusVentana(ventana.id)}>
+                          <img src={ventana.icono} alt={ventana.tipo} style={{ height: '20px' }} />
+                      </Button>
+                  </Tooltip>
+              ))}
+          </div>
+
           <Tooltip text= 'Hora local (CET)' enterDelay={100} leaveDelay={100}>
             <TiempoActual />
           </Tooltip> 
@@ -128,5 +139,10 @@ function WinToolbar() {
     </ThemeProvider>
   );
 }
+
+WinToolbar.propTypes = {
+  ventanasAbiertas: PropTypes.array.isRequired,
+  onFocusVentana: PropTypes.func.isRequired
+};
 
 export default WinToolbar;
