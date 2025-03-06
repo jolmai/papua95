@@ -13,7 +13,7 @@ function Ventana ({ titulo, onClose, children, style}) {
                 <span style={{ fontWeight: 'bold' }}>X</span>
             </Button>
         </WindowHeader>
-        <WindowContent style={{height: '40%', padding: '10px'}}>
+        <WindowContent style={{height: '85%', padding: '10px'}}>
             <Frame variant='field' style={{height: '100%', width: '100%', padding: '10px'}}>
                 <div style={{display: 'flex', flexWrap: 'wrap', alignItems: 'center'}}>
                     {children}

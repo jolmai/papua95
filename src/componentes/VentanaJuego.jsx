@@ -12,6 +12,8 @@ function VentanaJuego({idJuego, onClose, posicion}) {
             position: 'absolute',
             left: `${posicion.x}px`,
             top: `${posicion.y}px`,
+            minHeight: '500px',
+            padding: '0',
         }}>
             <iframe
                 src={juego.iframeSrc}
@@ -21,7 +23,8 @@ function VentanaJuego({idJuego, onClose, posicion}) {
                     width: '100%', 
                     height: '100%', 
                     border: 'none', 
-                    backgroundColor: '#000'
+                    backgroundColor: '#000',
+                    minHeight: '400px',
                 }}
             />
         </Ventana>
