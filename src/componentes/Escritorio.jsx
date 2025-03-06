@@ -11,6 +11,7 @@ import VentanaPapelera from './VentanaPapelera.jsx';
 import VentanaMiPC from './VentanaMiPC.jsx';
 import VentanaJuego from './VentanaJuego.jsx';
 import WinToolbar from './WinToolbar.jsx';
+import juegos from './Juegos.js';
 
 function IconosEscritorio() {
 
@@ -18,12 +19,25 @@ function IconosEscritorio() {
     const [carpetaAbierta, eligeCarpetaAbierta] = useState(null);
 
     const abrirVentana = (id, tipo) => {
+
+        let nombre = '';
+        let icono = '';
+
+        if (tipo === 'juego') {
+            const juego = juegos.find((juego) => juego.id === id);
+            nombre = juego.nombre;
+            icono = juego.icono;
+        } else {
+            nombre = tipo === 'mipc' ? 'Mi PC' : tipo === 'papelera' ? 'Papelera' : tipo === 'funda' ? 'La funda' : 'Juego';
+            icono = tipo === 'mipc' ? MiPC : tipo === 'papelera' ? Papelera : tipo === 'funda' ? Carpeta : '';
+        }
         const nuevaVentana = {
             id: `${tipo}-${Date.now()}`,
             tipo,
             idJuego: id,
+            nombre,
             posicion: { x: Math.random() * (window.innerWidth - 300), y: Math.random() * (window.innerHeight - 200) }, 
-            icono: tipo === 'mipc' ? MiPC : tipo === 'papelera' ? Papelera : Carpeta,
+            icono,
         };
         eligeVentanaAbierta([...ventanaAbierta, nuevaVentana]);
     };
@@ -35,6 +49,7 @@ function IconosEscritorio() {
     const cogerClickIcono = (idIcono) => {
         if (idIcono === 'funda') {
             eligeCarpetaAbierta('funda');
+            abrirVentana(idIcono, 'funda');
         } else {
             abrirVentana(idIcono, idIcono);
         }
