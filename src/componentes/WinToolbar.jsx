@@ -67,7 +67,7 @@ function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
       {showSearch && <Buscador onClose={() => setShowSearch(false)} />}
       <AppBar className='toolbarposition'>
         <Toolbar className='toolbarFlex'>
-          <div ref={menuRef} className='toolbarFlex'>
+          <div ref={menuRef} className='toolbarFlex' >
             <Button onClick={() => setOpen(!open)} active={open}>
               <img src={logo} alt="logo papua" style={{height: '25px', marginRight: '10px'}}/>
               Inicio
@@ -76,7 +76,7 @@ function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
             <div>
               {ventanasAbiertas.map((ventana) => (
                   <Tooltip key={ventana.id} text={ventana.nombre} enterDelay={100} leaveDelay={100}>
-                      <Button onClick={() => onFocusVentana(ventana.id)}>
+                      <Button style={{overflowX: 'hidden'}} onClick={() => onFocusVentana(ventana.id)}>
                           <img src={ventana.icono} alt={ventana.tipo} style={{ height: '20px' }} />
                           <span style={{marginLeft: '10px'}}>{ventana.nombre}</span>
                       </Button>
@@ -87,21 +87,14 @@ function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
 
           {open && (
               <MenuList className='listaMenu' onClick={() => setOpen(false)}>
-                <MenuItem icono={programas} alt={'icono-programas'} texto='Programas' onClick={abrirCarpeta}
-                />
-                <MenuItem icono={documentos} alt={'icono-documentos'} texto='Documentos' onClick={abrirCarpeta}
-                />
-                <MenuItem icono={configuracion} alt={'icono-configuracion'} texto='Configuración' 
-                />
-                <MenuItem icono={find} alt={'icono-buscar'} texto='Buscar' onClick={abrirBuscador}
-                />
-                <MenuItem icono={libro} alt={'icono-ayuda'} texto='Ayuda' 
-                />
-                <MenuItem icono={ejecutar} alt={'icono-ejecutar'} texto='Ejecutar...' 
-                />
+                <MenuItem icono={programas} alt={'icono-programas'} texto='Programas' onClick={abrirCarpeta}/>
+                <MenuItem icono={documentos} alt={'icono-documentos'} texto='Documentos' onClick={abrirCarpeta}/>
+                <MenuItem icono={configuracion} alt={'icono-configuracion'} texto='Configuración' />
+                <MenuItem icono={find} alt={'icono-buscar'} texto='Buscar' onClick={abrirBuscador}/>
+                <MenuItem icono={libro} alt={'icono-ayuda'} texto='Ayuda' />
+                <MenuItem icono={ejecutar} alt={'icono-ejecutar'} texto='Ejecutar...' />
                 <Separator />
-                <MenuItem icono={apagar} alt={'icono-apagar'} texto='Apagar' onClick={cerrarVentana}
-                />
+                <MenuItem icono={apagar} alt={'icono-apagar'} texto='Apagar' onClick={cerrarVentana}/>
               </MenuList>
             )}
 
