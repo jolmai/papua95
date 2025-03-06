@@ -67,69 +67,43 @@ function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
       {showSearch && <Buscador onClose={() => setShowSearch(false)} />}
       <AppBar className='toolbarposition'>
         <Toolbar className='toolbarFlex'>
-          <div ref={menuRef}>
-            <Button
-              onClick={() => setOpen(!open)}
-              active={open}
-            >
+          <div ref={menuRef} className='toolbarFlex'>
+            <Button onClick={() => setOpen(!open)} active={open}>
               <img src={logo} alt="logo papua" style={{height: '25px', marginRight: '10px'}}/>
               Inicio
             </Button>
-            {open && (
-              <MenuList className='listaMenu' onClick={() => setOpen(false)}>
-                <MenuItem 
-                  icono={programas} 
-                  alt={'icono-programas'} 
-                  texto='Programas' 
-                  onClick={abrirCarpeta}
-                />
-                <MenuItem 
-                  icono={documentos} 
-                  alt={'icono-documentos'} 
-                  texto='Documentos' 
-                  onClick={abrirCarpeta}
-                />
-                <MenuItem 
-                  icono={configuracion} 
-                  alt={'icono-configuracion'} 
-                  texto='Configuración' 
-                />
-                <MenuItem 
-                  icono={find} 
-                  alt={'icono-buscar'} 
-                  texto='Buscar' 
-                  onClick={abrirBuscador}
-                />
-                <MenuItem 
-                  icono={libro} 
-                  alt={'icono-ayuda'} 
-                  texto='Ayuda' 
-                />
-                <MenuItem 
-                  icono={ejecutar} 
-                  alt={'icono-ejecutar'} 
-                  texto='Ejecutar...' 
-                />
-                <Separator />
-                <MenuItem 
-                  icono={apagar} 
-                  alt={'icono-apagar'} 
-                  texto='Apagar' 
-                  onClick={cerrarVentana}
-                />
-              </MenuList>
-            )}
-          </div>
-
-          <div style={{ display: 'flex', gap: '10px', marginLeft: '20px' }}>
+            <Separator orientation='vertical' size='33px' style={{marginLeft:'5px', marginRight:'5px'}}/>
+            <div>
               {ventanasAbiertas.map((ventana) => (
                   <Tooltip key={ventana.id} text={ventana.nombre} enterDelay={100} leaveDelay={100}>
                       <Button onClick={() => onFocusVentana(ventana.id)}>
                           <img src={ventana.icono} alt={ventana.tipo} style={{ height: '20px' }} />
+                          <span style={{marginLeft: '10px'}}>{ventana.nombre}</span>
                       </Button>
                   </Tooltip>
               ))}
+           </div>
           </div>
+
+          {open && (
+              <MenuList className='listaMenu' onClick={() => setOpen(false)}>
+                <MenuItem icono={programas} alt={'icono-programas'} texto='Programas' onClick={abrirCarpeta}
+                />
+                <MenuItem icono={documentos} alt={'icono-documentos'} texto='Documentos' onClick={abrirCarpeta}
+                />
+                <MenuItem icono={configuracion} alt={'icono-configuracion'} texto='Configuración' 
+                />
+                <MenuItem icono={find} alt={'icono-buscar'} texto='Buscar' onClick={abrirBuscador}
+                />
+                <MenuItem icono={libro} alt={'icono-ayuda'} texto='Ayuda' 
+                />
+                <MenuItem icono={ejecutar} alt={'icono-ejecutar'} texto='Ejecutar...' 
+                />
+                <Separator />
+                <MenuItem icono={apagar} alt={'icono-apagar'} texto='Apagar' onClick={cerrarVentana}
+                />
+              </MenuList>
+            )}
 
           <Tooltip text= 'Hora local (CET)' enterDelay={100} leaveDelay={100}>
             <TiempoActual />
