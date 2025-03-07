@@ -2,7 +2,7 @@ import React from "react";
 import Ventana from "./Ventana.jsx";
 import  Juegos  from './Juegos.js';
 
-function VentanaJuego({idJuego, onClose, posicion}) {
+function VentanaJuego({idJuego, onClose, posicion, isFocused, onClick}) {
     const juego = Juegos.find((juego) => juego.id === idJuego);
     if(!juego) return null;
 
@@ -14,7 +14,9 @@ function VentanaJuego({idJuego, onClose, posicion}) {
             top: `${posicion.y}px`,
             minHeight: '500px',
             padding: '0',
-        }}>
+            zIndex: isFocused ? 1000 : 1,
+        }}
+        onClick={onClick}>
             <iframe
                 src={juego.iframeSrc}
                 title={juego.nombre}

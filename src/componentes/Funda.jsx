@@ -3,9 +3,15 @@ import Ventana from "./Ventana.jsx";
 import Iconos from "./Iconos.jsx";
 import Juegos from "./Juegos.js";
 
-function Funda({onClose, eligeVentanaAbierta}){
+function Funda({onClose, eligeVentanaAbierta, onClick, isFocused, posicion}) {
     return(
-        <Ventana titulo='La Funda' onClose={onClose}>
+        <Ventana titulo='La Funda' onClose={onClose} 
+            style={{
+                position: 'absolute',
+                left: `${posicion.x}px`,
+                top: `${posicion.y}px`,
+                zIndex: isFocused ? 1000 : 1 }}  onClick={onClick} 
+            >
             <div style={{display: 'flex', flexWrap: 'wrap', alignItems: 'center'}}>
                 {Juegos.map((juego) => (
                     <Iconos key={juego.id}

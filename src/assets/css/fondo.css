@@ -6,13 +6,14 @@
 }
 
 body {
-    background-color: teal;
-    margin: 0;
-    padding: 0;
-    font-family: 'W95FA', sans-serif;
-    background-image: url(../img/logo.png);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: 15%;
-    background-attachment: fixed;
-  }
+  background-color: teal;
+  margin: 0;
+  padding: 0;
+  font-family: 'W95FA', sans-serif;
+  background-image: url(../img/logo.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 15%;
+  background-attachment: fixed;
+  user-select: none;
+}
