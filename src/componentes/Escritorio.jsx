@@ -16,13 +16,20 @@ import juegos from './Juegos.js';
 function Escritorio() {
 
     const [ventanaAbierta, eligeVentanaAbierta] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
 
     const abrirVentana = (id, tipo) => {
-        setIsLoading(true);
-        document.body.style.cursor = "url('./reloj.gif'), wait";
 
-        setTimeout(() => {
+        const ventanaExistente = ventanaAbierta.find((ventana) => ventana.tipo === tipo);
+
+        if (ventanaExistente) {
+            
+            const nuevasVentanas = ventanaAbierta.filter((ventana) => ventana.id !== ventanaExistente.id);
+            nuevasVentanas.push(ventanaExistente); 
+            eligeVentanaAbierta(nuevasVentanas);
+            return; 
+        }
+
+     
         let nombre = '';
         let icono = '';
 
@@ -39,14 +46,12 @@ function Escritorio() {
             tipo,
             idJuego: id,
             nombre,
-            posicion: { x: Math.random() * (window.innerWidth - 300), y: Math.random() * (window.innerHeight - 200) }, 
+            posicion: { x: Math.random() * (window.innerWidth * 0.3), y: Math.random() * (window.innerHeight * 0.3) }, 
             icono,
         };
         eligeVentanaAbierta([...ventanaAbierta, nuevaVentana]);
 
-        document.body.style.cursor = 'default';
-        setIsLoading(false);
-    }, 2000);
+    
 };
 
     const cerrarVentana = (id) => {
@@ -72,33 +77,33 @@ function Escritorio() {
         <ThemeProvider theme={original}>
            
             <div className='containerIconos'>
-                <Icono icono={MiPC} alter={'icono-mipc'} nombre={'Mi Pc'} idIcono={'mipc'} onClick={cogerClickIcono} disabled={isLoading}/>
-                <Icono icono={Papelera} alter={'icono-papelera'} nombre={'Papelera'} idIcono={'papelera'} onClick={cogerClickIcono} disabled={isLoading}/>
-                <Icono icono={Carpeta} alter={'icono-carpeta'} nombre={'La funda'} idIcono={'funda'} onClick={cogerClickIcono} disabled={isLoading}/>
+                <Icono icono={MiPC} alter={'icono-mipc'} nombre={'Mi Pc'} idIcono={'mipc'} onClick={cogerClickIcono} />
+                <Icono icono={Papelera} alter={'icono-papelera'} nombre={'Papelera'} idIcono={'papelera'} onClick={cogerClickIcono}/>
+                <Icono icono={Carpeta} alter={'icono-carpeta'} nombre={'La funda'} idIcono={'funda'} onClick={cogerClickIcono} />
             </div>
             
             {ventanaAbierta.map((ventana) => {
             if (ventana.tipo === 'mipc') {
                 return (
-                    <VentanaMiPC key={ventana.id} onClose={() => cerrarVentana(ventana.id)} posicion={ventana.posicion} isFocused={ventanaAbierta[ventanaAbierta.length - 1].id === ventana.id}/>
+                    <VentanaMiPC key={ventana.id} onClose={() => cerrarVentana(ventana.id)} posicion={ventana.posicion} isFocused={ventanaAbierta[ventanaAbierta.length - 1].id === ventana.id} onClick={() => focusVentana(ventana.id)}/>
                 );
             } else if (ventana.tipo === 'papelera') {
                 return (
-                    <VentanaPapelera key={ventana.id} onClose={() => cerrarVentana(ventana.id)} posicion={ventana.posicion} isFocused={ventanaAbierta[ventanaAbierta.length - 1].id === ventana.id}/>
+                    <VentanaPapelera key={ventana.id} onClose={() => cerrarVentana(ventana.id)} posicion={ventana.posicion} isFocused={ventanaAbierta[ventanaAbierta.length - 1].id === ventana.id} onClick={() => focusVentana(ventana.id)}/>
                 );
             
             } else if (ventana.tipo === 'funda') {
                 return (
-                    <Funda key={ventana.id} eligeVentanaAbierta={abrirVentana} onClose={() => cerrarVentana(ventana.id)} />
+                    <Funda key={ventana.id} eligeVentanaAbierta={abrirVentana} onClose={() => cerrarVentana(ventana.id)} posicion={ventana.posicion} onClick={() => focusVentana(ventana.id)}/>
                 );
             } else if (ventana.tipo === 'juego') {
                 return (
-                    <VentanaJuego key={ventana.id} idJuego={ventana.idJuego} onClose={() => cerrarVentana(ventana.id)} posicion={ventana.posicion}  isFocused={ventanaAbierta[ventanaAbierta.length - 1].id === ventana.id}/>
+                    <VentanaJuego key={ventana.id} idJuego={ventana.idJuego} onClose={() => cerrarVentana(ventana.id)} posicion={ventana.posicion}  isFocused={ventanaAbierta[ventanaAbierta.length - 1].id === ventana.id} onClick={() => focusVentana(ventana.id)}/>
                 );
             }
             return null;
         })}
-        <WinToolbar ventanasAbiertas={ventanaAbierta} onFocusVentana={focusVentana} />
+        <WinToolbar ventanasAbiertas={ventanaAbierta} onFocusVentana={(id) => focusVentana(id) } />
         </ThemeProvider>
     );
 }
