@@ -70,7 +70,7 @@ function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
       />}
       <AppBar className='toolbarposition'>
         <Toolbar className='toolbarFlex'>
-          <div ref={menuRef}>
+          <div ref={menuRef} className='toolbarFlex'>
             <Button
               onClick={() => setOpen(!open)}
               active={open}
@@ -78,6 +78,18 @@ function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
               <img src={logo} alt="logo papua" style={{height: '25px', marginRight: '10px'}}/>
               Inicio
             </Button>
+            <Separator orientation='vertical' size='33px' style={{ marginLeft: '5px', marginRight: '5px' }}/>
+            {ventanasAbiertas.map((ventana) => (
+                <Tooltip key={ventana.id} text={ventana.nombre} enterDelay={100} leaveDelay={100}>
+                  <Button
+                    style={{ overflowX: 'hidden' }}
+                    onClick={() => onFocusVentana(ventana.id)} // Enfocar la ventana al hacer clic
+                  >
+                    <img src={ventana.icono} alt={ventana.tipo} style={{ height: '20px' }} />
+                    <span style={{ marginLeft: '10px' }}>{ventana.nombre}</span>
+                  </Button>
+                </Tooltip>
+              ))}
             {open && (
               <MenuList className='listaMenu' onClick={() => setOpen(false)}>
                 <MenuItem 
@@ -134,7 +146,8 @@ function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
 
 WinToolbar.propTypes = {
   ventanasAbiertas: PropTypes.array.isRequired,
-  onFocusVentana: PropTypes.func.isRequired
+  onFocusVentana: PropTypes.func.isRequired,
+  eligeVentanaAbierta: PropTypes.func.isRequired,
 };
 
 export default WinToolbar;
