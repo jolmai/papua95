@@ -53,7 +53,21 @@ function Escritorio() {
     };
 
     const cogerClickIcono = (idIcono) => {
-        abrirVentana(idIcono, idIcono);
+        let tipo;
+        switch(idIcono) {
+            case 'mipc': 
+                tipo = 'mipc';
+                break;
+            case 'papelera': 
+                tipo = 'papelera';
+                break;
+            case 'funda': 
+                tipo = 'funda';
+                break;
+            default:
+                tipo = 'juego';
+        }
+        abrirVentana(idIcono, tipo);
     };
 
     const focusVentana = (id) => {
