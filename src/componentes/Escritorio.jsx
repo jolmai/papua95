@@ -65,7 +65,6 @@ function Escritorio() {
         }
     };
 
-    // Make the abrirVentana function globally available for the Buscador component
     useEffect(() => {
         window.eligeVentanaAbierta = abrirVentana;
         
@@ -93,7 +92,7 @@ function Escritorio() {
                     );
                 } else if (ventana.tipo === 'funda') {
                     return (
-                        <Funda key={ventana.id} eligeVentanaAbierta={abrirVentana} onClose={() => cerrarVentana(ventana.id)} posicion={ventana.posicion} onClick={() => focusVentana(ventana.id)}/>
+                        <Funda key={ventana.id} eligeVentanaAbierta={(id, tipo) => abrirVentana(id, tipo)} onClose={() => cerrarVentana(ventana.id)} posicion={ventana.posicion} onClick={() => focusVentana(ventana.id)}/>
                     );
                 } else if (ventana.tipo === 'juego') {
                     return (

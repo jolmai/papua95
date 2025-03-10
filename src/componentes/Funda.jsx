@@ -19,7 +19,7 @@ function Funda({onClose, eligeVentanaAbierta, onClick, isFocused, posicion}) {
                             alter={`icono-${juego.id}`} 
                             nombre={juego.nombre} 
                             idIcono={juego.id} 
-                            onClick={(id) => eligeVentanaAbierta(id, 'juego')} 
+                            onClick={() => eligeVentanaAbierta(juego.id, 'juego')}
                             estaDentroCarpeta={true}/>
                 ))}
             </div>
