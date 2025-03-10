@@ -33,7 +33,7 @@ MenuItem.propTypes = {
   onClick: PropTypes.func
 };
 
-function WinToolbar() {
+function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
   const [open, setOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const menuRef = useRef(null);
@@ -43,7 +43,7 @@ function WinToolbar() {
   };
 
   const abrirCarpeta = () => {
-
+    // Implementation can be added here if needed
   };
 
   const abrirBuscador = () => {
@@ -64,7 +64,10 @@ function WinToolbar() {
 
   return (
     <ThemeProvider theme={original}>
-      {showSearch && <Buscador onClose={() => setShowSearch(false)} />}
+      {showSearch && <Buscador 
+        onClose={() => setShowSearch(false)} 
+        eligeVentanaAbierta={window.eligeVentanaAbierta} // Access the global function
+      />}
       <AppBar className='toolbarposition'>
         <Toolbar className='toolbarFlex'>
           <div ref={menuRef}>
@@ -79,41 +82,41 @@ function WinToolbar() {
               <MenuList className='listaMenu' onClick={() => setOpen(false)}>
                 <MenuItem 
                   icono={programas} 
-                  alt={'icono-programas'} 
+                  alter={'icono-programas'} 
                   texto='Programas' 
                   onClick={abrirCarpeta}
                 />
                 <MenuItem 
                   icono={documentos} 
-                  alt={'icono-documentos'} 
+                  alter={'icono-documentos'} 
                   texto='Documentos' 
                   onClick={abrirCarpeta}
                 />
                 <MenuItem 
                   icono={configuracion} 
-                  alt={'icono-configuracion'} 
+                  alter={'icono-configuracion'} 
                   texto='Configuración' 
                 />
                 <MenuItem 
                   icono={find} 
-                  alt={'icono-buscar'} 
+                  alter={'icono-buscar'} 
                   texto='Buscar' 
                   onClick={abrirBuscador}
                 />
                 <MenuItem 
                   icono={libro} 
-                  alt={'icono-ayuda'} 
+                  alter={'icono-ayuda'} 
                   texto='Ayuda' 
                 />
                 <MenuItem 
                   icono={ejecutar} 
-                  alt={'icono-ejecutar'} 
+                  alter={'icono-ejecutar'} 
                   texto='Ejecutar...' 
                 />
                 <Separator />
                 <MenuItem 
                   icono={apagar} 
-                  alt={'icono-apagar'} 
+                  alter={'icono-apagar'} 
                   texto='Apagar' 
                   onClick={cerrarVentana}
                 />
@@ -128,5 +131,10 @@ function WinToolbar() {
     </ThemeProvider>
   );
 }
+
+WinToolbar.propTypes = {
+  ventanasAbiertas: PropTypes.array.isRequired,
+  onFocusVentana: PropTypes.func.isRequired
+};
 
 export default WinToolbar;
