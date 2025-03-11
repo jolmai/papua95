@@ -1,5 +1,5 @@
 import React from "react";
-import Ventana from "./Ventana";
+import Ventana from "../Utiles/Ventana";
 
 function VentanaMiPC({onClose, posicion, isFocused, onClick}){
     return(

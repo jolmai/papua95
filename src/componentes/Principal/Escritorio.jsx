@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { ThemeProvider } from 'styled-components';
 import original from 'react95/dist/themes/original';
-import MiPC from '../assets/img/iconos/mipc.ico';
-import Papelera from '../assets/img/iconos/papelera.ico';
-import Carpeta from '../assets/img/iconos/carpeta.ico';
-import '../assets/css/icon.css';
-import Icono from './Iconos.jsx';
-import Funda from './Funda.jsx';
-import VentanaPapelera from './VentanaPapelera.jsx';
-import VentanaMiPC from './VentanaMiPC.jsx';
-import VentanaJuego from './VentanaJuego.jsx';
+import MiPC from '../../assets/img/iconos/mipc.ico';
+import Papelera from '../../assets/img/iconos/papelera.ico';
+import Carpeta from '../../assets/img/iconos/carpeta.ico';
+import '../../assets/css/icon.css';
+import Icono from '../Utiles/Iconos.jsx';
+import Funda from '../Ventanas/Funda.jsx';
+import VentanaPapelera from '../Ventanas/VentanaPapelera.jsx';
+import VentanaMiPC from '../Ventanas/VentanaMiPC.jsx';
+import VentanaJuego from '../Ventanas/VentanaJuego.jsx';
 import WinToolbar from './WinToolbar.jsx';
-import juegos from './Juegos.js';
+import juegos from '../js/Juegos.js';
 
 function Escritorio() {
     const [ventanaAbierta, eligeVentanaAbierta] = useState([]);

@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { Window, WindowHeader, WindowContent, Button, TextField, List, ListItem } from 'react95';
 import PropTypes from 'prop-types';
-import Juegos from './Juegos.js';
-import MiPC from '../assets/img/iconos/mipc.ico';
-import Papelera from '../assets/img/iconos/papelera.ico';
-import Carpeta from '../assets/img/iconos/carpeta.ico';
+import Juegos from '../js/Juegos.js';
+import MiPC from '../../assets/img/iconos/mipc.ico';
+import Papelera from '../../assets/img/iconos/papelera.ico';
+import Carpeta from '../../assets/img/iconos/carpeta.ico';
 
 function Buscador({ onClose, eligeVentanaAbierta }) {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
 
-  // Define all available items that can be searched
   const searchableItems = [
     { id: 'mipc', name: 'Mi PC', icon: MiPC, type: 'mipc' },
     { id: 'papelera', name: 'Papelera', icon: Papelera, type: 'papelera' },

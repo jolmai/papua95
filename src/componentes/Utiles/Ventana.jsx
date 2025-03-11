@@ -1,6 +1,6 @@
 import React from "react";
 import { Window, WindowContent, WindowHeader, Frame, Button} from 'react95';
-import moverVentana from './moverVentana.js';
+import moverVentana from '../js/moverVentana.js';
 
 function Ventana ({ titulo, onClose, children, style, onClick}) {
     // Initialize position with the style coordinates

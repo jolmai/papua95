@@ -2,18 +2,18 @@ import React, {useState, useEffect, useRef} from 'react';
 import { Button, AppBar, Toolbar, MenuList, MenuListItem, Separator, Tooltip} from 'react95';
 import { ThemeProvider } from 'styled-components';
 import original from 'react95/dist/themes/original';
-import logo from '../assets/img/logo.png';
-import libro from '../assets/img/iconos/book.ico';
-import configuracion from '../assets/img/iconos/Settings.ico';
-import programas from '../assets/img/iconos/programs.ico';
-import apagar from '../assets/img/iconos/off.ico';
-import documentos from '../assets/img/iconos/web-documents.ico';
-import find from '../assets/img/iconos/find.ico';
-import ejecutar from '../assets/img/iconos/run.ico';
-import '../assets/css/toolbar.css';
-import TiempoActual from './TiempoActual.jsx'
+import logo from '../../assets/img/logo.png';
+import libro from '../../assets/img/iconos/book.ico';
+import configuracion from '../../assets/img/iconos/Settings.ico';
+import programas from '../../assets/img/iconos/programs.ico';
+import apagar from '../../assets/img/iconos/off.ico';
+import documentos from '../../assets/img/iconos/web-documents.ico';
+import find from '../../assets/img/iconos/find.ico';
+import ejecutar from '../../assets/img/iconos/run.ico';
+import '../../assets/css/toolbar.css';
+import TiempoActual from '../Utiles/TiempoActual.jsx'
 import PropTypes from 'prop-types';
-import Buscador from './Buscador.jsx';
+import Buscador from '../Utiles/Buscador.jsx';
 
 function MenuItem({icono, alter, texto, onClick}) {
   return (
