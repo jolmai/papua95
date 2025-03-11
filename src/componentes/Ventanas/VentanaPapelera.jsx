@@ -1,5 +1,5 @@
 import React from "react";
-import Ventana from "./Ventana";
+import Ventana from "../Utiles/Ventana";
 
 function VentanaPapelera({onClose, posicion, isFocused, onClick}){
     return(

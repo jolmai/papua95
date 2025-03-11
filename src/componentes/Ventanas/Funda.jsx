@@ -1,7 +1,7 @@
 import React from "react";
-import Ventana from "./Ventana.jsx";
-import Iconos from "./Iconos.jsx";
-import Juegos from "./Juegos.js";
+import Ventana from "../Utiles/Ventana.jsx";
+import Iconos from "../Utiles/Iconos.jsx";
+import Juegos from "../js/Juegos.js";
 
 function Funda({onClose, eligeVentanaAbierta, onClick, isFocused, posicion}) {
     return(

@@ -1,6 +1,6 @@
 import React from "react";
-import Ventana from "./Ventana.jsx";
-import  Juegos  from './Juegos.js';
+import Ventana from "../Utiles/Ventana.jsx";
+import  Juegos  from '../js/Juegos.js';
 
 function VentanaJuego({idJuego, onClose, posicion, isFocused, onClick}) {
     const juego = Juegos.find((juego) => juego.id === idJuego);
