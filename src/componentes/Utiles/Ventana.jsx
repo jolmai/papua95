@@ -1,9 +1,9 @@
 import React from "react";
-import { Window, WindowContent, WindowHeader, Frame, Button} from 'react95';
+import { Window, WindowContent, WindowHeader, Frame, Button, MenuList, MenuListItem} from 'react95';
 import moverVentana from '../js/moverVentana.js';
 
 function Ventana ({ titulo, onClose, children, style, onClick}) {
-    // Initialize position with the style coordinates
+
     const initialPosition = {
         x: style?.left ? parseInt(style.left) : 0,
         y: style?.top ? parseInt(style.top) : 0
@@ -12,7 +12,7 @@ function Ventana ({ titulo, onClose, children, style, onClick}) {
     const { position, handleMouseDown } = moverVentana(initialPosition);
 
     const handleClose = (e) => {
-        e.stopPropagation(); // Prevent event bubbling
+        e.stopPropagation();
         onClose();
     };
 
@@ -28,12 +28,17 @@ function Ventana ({ titulo, onClose, children, style, onClick}) {
             onClick={onClick}
         > 
             <WindowHeader className='barraVentana' onMouseDown={handleMouseDown} style={{ cursor: 'move' }}>
-                <p>{titulo}</p>
+                <p style={{marginLeft:'10px'}}>{titulo}</p>
                 <Button onClick={handleClose}>
                     <span style={{ fontWeight: 'bold' }}>X</span>
                 </Button>
             </WindowHeader>
-            <WindowContent style={{height: '85%', padding: '10px'}}>
+            <MenuList className="menuHeader" inline>
+                <MenuListItem size='sm'>Archivo</MenuListItem>
+                <MenuListItem size='sm'>Editar</MenuListItem>
+                <MenuListItem size='sm'>Vista</MenuListItem>
+            </MenuList>
+            <WindowContent className="contentContent">
                 <Frame variant='field' style={{height: '100%', width: '100%', padding: '10px'}}>
                     <div style={{display: 'flex', flexWrap: 'wrap', alignItems: 'center'}}>
                         {children}
