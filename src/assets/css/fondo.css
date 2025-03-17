@@ -17,6 +17,7 @@ body {
   background-attachment: fixed;
   user-select: none;
   overflow-y: hidden;
+  overflow-x: hidden;
 }
 
 p{

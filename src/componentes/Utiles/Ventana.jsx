@@ -1,6 +1,8 @@
 import React from "react";
 import { Window, WindowContent, WindowHeader, Frame, Button, MenuList, MenuListItem} from 'react95';
 import moverVentana from '../js/moverVentana.js';
+import ejecutar from '../../assets/img/iconos/run.ico';
+import ventana from '../../assets/img/iconos/window.png';
 
 function Ventana ({ titulo, onClose, children, style, onClick}) {
 
@@ -28,10 +30,20 @@ function Ventana ({ titulo, onClose, children, style, onClick}) {
             onClick={onClick}
         > 
             <WindowHeader className='barraVentana' onMouseDown={handleMouseDown} style={{ cursor: 'move' }}>
-                <p style={{marginLeft:'10px'}}>{titulo}</p>
-                <Button onClick={handleClose}>
-                    <span style={{ fontWeight: 'bold' }}>X</span>
-                </Button>
+                <div style={{display:'flex', alignItems:'center'}}>
+                    <img src={ejecutar} alt="" />
+                    <p style={{marginLeft:'10px'}}>{titulo}</p>
+                </div>
+                <div style={{display:'flex', alignItems:'center'}}>
+                    <Button onClick={handleClose}>
+                        <img src={ventana} alt="icono-ventana" style={{width:'30px'}} />
+                    </Button>
+                    <Button onClick={handleClose}>
+                        <span style={{ fontWeight: 'bold' }}>X</span>
+                    </Button>
+                </div>
+                
+                
             </WindowHeader>
             <MenuList className="menuHeader" inline>
                 <MenuListItem size='sm'>Archivo</MenuListItem>
