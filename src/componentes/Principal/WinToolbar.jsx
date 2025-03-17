@@ -36,7 +36,51 @@ MenuItem.propTypes = {
 function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
   const [open, setOpen] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
+  const [windows, setWindows] = useState([]);
   const menuRef = useRef(null);
+  const dragItem = useRef();
+  const dragOverItem = useRef();
+
+  useEffect(() => {
+    if (windows.length === 0) {
+      setWindows(ventanasAbiertas);
+    } else {
+      const updatedWindows = windows.filter(w => 
+        ventanasAbiertas.some(v => v.id === w.id)
+      ).map(window => {
+        const updated = ventanasAbiertas.find(v => v.id === window.id);
+        return updated || window;
+      });
+
+      const existingIds = new Set(updatedWindows.map(w => w.id));
+      const newWindows = ventanasAbiertas.filter(w => !existingIds.has(w.id));
+      
+      if (newWindows.length > 0 || updatedWindows.length !== windows.length) {
+        setWindows([...updatedWindows, ...newWindows]);
+      }
+    }
+  }, [ventanasAbiertas]);
+
+  const handleDragStart = (e, position) => {
+    dragItem.current = position;
+    e.target.style.opacity = '0.5';
+  };
+
+  const handleDragEnter = (e, position) => {
+    dragOverItem.current = position;
+    e.preventDefault();
+  };
+
+  const handleDragEnd = (e) => {
+    e.target.style.opacity = '1';
+    const copyListItems = [...windows];
+    const dragItemContent = copyListItems[dragItem.current];
+    copyListItems.splice(dragItem.current, 1);
+    copyListItems.splice(dragOverItem.current, 0, dragItemContent);
+    dragItem.current = null;
+    dragOverItem.current = null;
+    setWindows(copyListItems);
+  };
 
   const cerrarVentana = () => {
     window.close();
@@ -66,7 +110,7 @@ function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
     <ThemeProvider theme={original}>
       {showSearch && <Buscador 
         onClose={() => setShowSearch(false)} 
-        eligeVentanaAbierta={window.eligeVentanaAbierta} // Access the global function
+        eligeVentanaAbierta={window.eligeVentanaAbierta}
       />}
       <AppBar className='toolbarposition'>
         <Toolbar className='toolbarFlex'>
@@ -79,17 +123,29 @@ function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
               Inicio
             </Button>
             <Separator orientation='vertical' size='33px' style={{ marginLeft: '5px', marginRight: '5px' }}/>
-            {ventanasAbiertas.map((ventana) => (
-                <Tooltip key={ventana.id} text={ventana.nombre} enterDelay={100} leaveDelay={100}>
+            {windows.map((ventana, index) => (
+              <div
+                key={ventana.id}
+                draggable
+                onDragStart={(e) => handleDragStart(e, index)}
+                onDragEnter={(e) => handleDragEnter(e, index)}
+                onDragEnd={handleDragEnd}
+                onDragOver={(e) => e.preventDefault()}
+              >
+                <Tooltip text={ventana.nombre} enterDelay={100} leaveDelay={100}>
                   <Button
-                    style={{ overflowX: 'hidden' }}
-                    onClick={() => onFocusVentana(ventana.id)} // Enfocar la ventana al hacer clic
+                    style={{ 
+                      overflowX: 'hidden',
+                      cursor: 'move'
+                    }}
+                    onClick={() => onFocusVentana(ventana.id)}
                   >
                     <img src={ventana.icono} alt={ventana.tipo} style={{ height: '20px' }} />
                     <span style={{ marginLeft: '10px' }}>{ventana.nombre}</span>
                   </Button>
                 </Tooltip>
-              ))}
+              </div>
+            ))}
             {open && (
               <MenuList className='listaMenu' onClick={() => setOpen(false)}>
                 <MenuItem 
@@ -135,7 +191,7 @@ function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
               </MenuList>
             )}
           </div>
-          <Tooltip text= 'Hora local (CET)' enterDelay={100} leaveDelay={100}>
+          <Tooltip text='Hora local (CET)' enterDelay={100} leaveDelay={100}>
             <TiempoActual />
           </Tooltip> 
         </Toolbar>
