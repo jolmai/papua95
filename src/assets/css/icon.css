@@ -22,7 +22,7 @@
     min-width: 75px;
     border: 0 !important;
     background: transparent !important;
-    
+    display: flex !important;
 }
 
 .ventanaCompleta {
@@ -43,4 +43,15 @@
     border: 0 !important;
     border-bottom: 2px solid black !important;
     color: white;
+}
+.contentContent{
+    height: 80%;
+    padding: 0 10px!important;
+}
+
+.menuHeader{
+    border: 0 !important;
+    box-shadow: none !important;
+    padding: 0 !important;
+    margin-left: 10px;
 }
