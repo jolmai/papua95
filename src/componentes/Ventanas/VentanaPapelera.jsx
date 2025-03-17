@@ -1,5 +1,7 @@
 import React from "react";
 import Ventana from "../Utiles/Ventana";
+import Notepad from '../../assets/img/iconos/Notepad.ico';
+import Icono from "../Utiles/Iconos";
 
 function VentanaPapelera({onClose, posicion, isFocused, onClick}){
     return(
@@ -12,7 +14,7 @@ function VentanaPapelera({onClose, posicion, isFocused, onClick}){
         }}
         onClick={onClick}
         >
-            <p>Papeleron bbbe</p>
+            <Icono icono={Notepad} alter={'icono-notepad'} nombre={'Proyecto Papua'} idIcono={'papelera'} estaDentroCarpeta={true}/>
         </Ventana>
     );
 }

@@ -23,6 +23,7 @@
     border: 0 !important;
     background: transparent !important;
     display: flex !important;
+    gap: 5px;
 }
 
 .ventanaCompleta {
