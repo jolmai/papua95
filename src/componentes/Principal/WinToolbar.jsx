@@ -136,7 +136,8 @@ function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
                   <Button
                     style={{ 
                       overflowX: 'hidden',
-                      cursor: 'move'
+                      overflowY: 'hidden',
+                      cursor: 'pointer'
                     }}
                     onClick={() => onFocusVentana(ventana.id)}
                   >
