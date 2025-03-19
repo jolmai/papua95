@@ -43,7 +43,6 @@
 
 .icon-container.selected {
     background-color: rgba(0, 0, 255, 0.1);
-    border: 1px dotted #000;
 }
 
 .icon-container.selected .icono {
