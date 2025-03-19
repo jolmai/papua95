@@ -5,7 +5,7 @@ import Juegos from "../js/Juegos.js";
 
 function Funda({onClose, eligeVentanaAbierta, onClick, isFocused, posicion}) {
     return(
-        <Ventana titulo='La Funda' onClose={onClose} 
+        <Ventana titulo='La Funda' onClose={onClose} tipoVentana="funda"
             style={{
                 position: 'absolute',
                 left: `${posicion.x}px`,
