@@ -5,7 +5,7 @@ import Icono from "../Utiles/Iconos";
 
 function VentanaPapelera({onClose, posicion, isFocused, onClick}){
     return(
-        <Ventana titulo='Papelera' onClose={onClose}
+        <Ventana titulo='Papelera' onClose={onClose} tipoVentana="papelera"
         style={{ 
             position: 'absolute',
             left: `${posicion.x}px`,

@@ -5,9 +5,9 @@ import Disco from '../../assets/img/iconos/Disc Drive.ico';
 import ControlPanel from '../../assets/img/iconos/Controls Folder.ico';
 import Icono from "../Utiles/Iconos";
 
-function VentanaMiPC({onClose, posicion, isFocused, onClick}){
+function VentanaMiPC({onClose, posicion, isFocused, onClick, }){
     return(
-        <Ventana titulo='MiPC' onClose={onClose}
+        <Ventana titulo='MiPC' onClose={onClose} tipoVentana="mipc"
         style={{ 
             position: 'absolute',
             left: `${posicion.x}px`,

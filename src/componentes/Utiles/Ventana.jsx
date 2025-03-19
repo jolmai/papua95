@@ -3,8 +3,18 @@ import { Window, WindowContent, WindowHeader, Frame, Button, MenuList, MenuListI
 import moverVentana from '../js/moverVentana.js';
 import ejecutar from '../../assets/img/iconos/run.ico';
 import ventana from '../../assets/img/iconos/window.png';
+import dimensionVentana from '../js/dimensionesVentana.js';
 
-function Ventana ({ titulo, onClose, children, style, onClick}) {
+function Ventana ({ titulo, onClose, children, style, onClick, tipoVentana, dimensiones}) {
+
+    const externalDimensions = tipoVentana ? dimensionVentana[tipoVentana] : {}
+    const defaultDimensions = {width:400 , height: 400};
+    const finalDimensions = {...defaultDimensions,...externalDimensions, ...dimensiones};
+
+
+    const headerHeight = 50;
+    const menuHeight = 30;
+    const contentHeight = finalDimensions.height - headerHeight - menuHeight;
 
     const initialPosition = {
         x: style?.left ? parseInt(style.left) : 0,
@@ -22,6 +32,7 @@ function Ventana ({ titulo, onClose, children, style, onClick}) {
         <Window className='ventanaCompleta' 
             style={{
                 ...style,
+                ...finalDimensions,
                 position: 'absolute',
                 left: `${position.x}px`,
                 top: `${position.y}px`,
@@ -51,7 +62,7 @@ function Ventana ({ titulo, onClose, children, style, onClick}) {
                 <MenuListItem size='sm'>Vista</MenuListItem>
             </MenuList>
             <WindowContent className="contentContent">
-                <Frame variant='field' style={{height: '100%', width: '100%', padding: '10px'}}>
+                <Frame variant='field' style={{height: `${contentHeight}px`, width: '100%', padding: '10px'}}>
                     <div style={{display: 'flex', flexWrap: 'wrap', alignItems: 'center'}}>
                         {children}
                     </div>
