@@ -2,6 +2,7 @@
     color: white;
     margin: 0;
     text-align: center;
+    padding: 2px 4px;
 }
 
 .containerIconos {
@@ -11,6 +12,7 @@
     gap: 5px;
     padding: 20px;
     border: 0px !important;
+    user-select: none;
 }
 
 .icono {
@@ -24,6 +26,34 @@
     background: transparent !important;
     display: flex !important;
     gap: 5px;
+}
+
+.desktop {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    user-select: none;
+}
+
+.icon-container {
+    position: relative;
+    padding: 2px;
+}
+
+.icon-container.selected {
+    background-color: rgba(0, 0, 255, 0.1);
+    border: 1px dotted #000;
+}
+
+.icon-container.selected .icono {
+    background-color: transparent !important;
+    border: none !important;
+}
+
+.icon-container.selected .nombreIcono {
+    background-color: rgb(0, 0, 255);
+    color: white !important;
 }
 
 .ventanaCompleta {
@@ -46,7 +76,6 @@
     color: white;
 }
 .contentContent{
-    height: 80%;
     padding: 0 10px!important;
 }
 
