@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { ThemeProvider } from 'styled-components';
+import original from 'react95/dist/themes/original';
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from '../../firebaseConfig';
-import { Window, WindowHeader, WindowContent, Button, TextField } from 'react95';
+import { Window, WindowHeader, WindowContent, Button, TextInput } from 'react95';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -18,40 +20,42 @@ function Login() {
   };
 
   return (
-    <div style={{
-      position: 'fixed',
-      top: '50%',
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      zIndex: 999
-    }}>
-      <Window>
-        <WindowHeader>
-          <span>Login</span>
-        </WindowHeader>
-        <WindowContent>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <TextField
-              placeholder='Email'
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              fullWidth
-            />
-            <TextField
-              placeholder='Password'
-              type='password'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              fullWidth
-            />
-            <Button onClick={handleLogin}>
-              Login
-            </Button>
-            {error && <div style={{ color: 'red' }}>{error}</div>}
-          </div>
-        </WindowContent>
-      </Window>
-    </div>
+    <ThemeProvider theme={original}>
+      <div style={{
+        position: 'fixed',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+        zIndex: 999
+      }}>
+        <Window>
+          <WindowHeader className='barraVentana'>
+            <span>Login</span>
+          </WindowHeader>
+          <WindowContent>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+              <TextInput
+                placeholder='Email'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                fullWidth
+              />
+              <TextInput
+                placeholder='Password'
+                type='password'
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                fullWidth
+              />
+              <Button onClick={handleLogin}>
+                Login
+              </Button>
+              {error && <div style={{ color: 'red' }}>{error}</div>}
+            </div>
+          </WindowContent>
+        </Window>
+      </div>
+    </ThemeProvider>
   );
 }
 
