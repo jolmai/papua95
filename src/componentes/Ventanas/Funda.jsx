@@ -2,10 +2,11 @@ import React from "react";
 import Ventana from "../Utiles/Ventana.jsx";
 import Iconos from "../Utiles/Iconos.jsx";
 import Juegos from "../js/Juegos.js";
+import Carpeta from '../../assets/img/iconos/carpeta.ico';
 
 function Funda({onClose, eligeVentanaAbierta, onClick, isFocused, posicion}) {
     return(
-        <Ventana titulo='La Funda' onClose={onClose} tipoVentana="funda"
+        <Ventana titulo='La Funda' onClose={onClose} tipoVentana="funda" iconHeader={Carpeta}
             style={{
                 position: 'absolute',
                 left: `${posicion.x}px`,

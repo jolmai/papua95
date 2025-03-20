@@ -5,7 +5,7 @@ import ejecutar from '../../assets/img/iconos/run.ico';
 import ventana from '../../assets/img/iconos/window.png';
 import dimensionVentana from '../js/dimensionesVentana.js';
 
-function Ventana ({ titulo, onClose, children, style, onClick, tipoVentana, dimensiones}) {
+function Ventana ({ titulo, onClose, children, style, onClick, tipoVentana, dimensiones, iconHeader}) {
 
     const externalDimensions = tipoVentana ? dimensionVentana[tipoVentana] : {}
     const defaultDimensions = {width:400 , height: 400};
@@ -42,7 +42,7 @@ function Ventana ({ titulo, onClose, children, style, onClick, tipoVentana, dime
         > 
             <WindowHeader className='barraVentana' onMouseDown={handleMouseDown} style={{ cursor: 'move' }}>
                 <div style={{display:'flex', alignItems:'center'}}>
-                    <img src={ejecutar} alt="" />
+                    <img src={ iconHeader || ejecutar} alt="" style={{width:'25px'}}/>
                     <p style={{marginLeft:'10px'}}>{titulo}</p>
                 </div>
                 <div style={{display:'flex', alignItems:'center'}}>
