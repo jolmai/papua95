@@ -7,7 +7,7 @@ function VentanaJuego({idJuego, onClose, posicion, isFocused, onClick}) {
     if(!juego) return null;
 
     return(
-        <Ventana titulo={juego.nombre} onClose={onClose} 
+        <Ventana titulo={juego.nombre} onClose={onClose} iconHeader={juego.icono}
         style={{ 
             position: 'absolute',
             left: `${posicion.x}px`,

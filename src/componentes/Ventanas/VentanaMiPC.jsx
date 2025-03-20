@@ -4,10 +4,11 @@ import Drive from '../../assets/img/iconos/drive.ico';
 import Disco from '../../assets/img/iconos/Disc Drive.ico';
 import ControlPanel from '../../assets/img/iconos/Controls Folder.ico';
 import Icono from "../Utiles/Iconos";
+import MiPC from '../../assets/img/iconos/mipc.ico';
 
-function VentanaMiPC({onClose, posicion, isFocused, onClick, }){
+function VentanaMiPC({onClose, posicion, isFocused, onClick }){
     return(
-        <Ventana titulo='MiPC' onClose={onClose} tipoVentana="mipc"
+        <Ventana titulo='MiPC' onClose={onClose} tipoVentana="mipc" iconHeader={MiPC}
         style={{ 
             position: 'absolute',
             left: `${posicion.x}px`,
