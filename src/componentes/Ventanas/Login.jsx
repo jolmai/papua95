@@ -2,20 +2,56 @@ import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import original from 'react95/dist/themes/original';
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../../firebaseConfig';
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { auth, db } from '../../firebaseConfig';
 import { Window, WindowHeader, WindowContent, Button, TextInput } from 'react95';
 
 function Login() {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
 
   const handleLogin = async () => {
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      console.log('Attempting login with username:', username);
+      
+      // Query Firestore to get the email associated with the username
+      const usersRef = collection(db, "Usuarios");
+      const q = query(usersRef, where("usuario", "==", username));
+      
+      console.log('Querying Firestore for user...');
+      const querySnapshot = await getDocs(q);
+      console.log('Query results:', querySnapshot.size, 'documents found');
+
+      if (querySnapshot.empty) {
+        console.log('No user found with username:', username);
+        setError("Usuario no encontrado");
+        return;
+      }
+
+      const userDoc = querySnapshot.docs[0];
+      const userData = userDoc.data();
+      console.log('User data found:', { ...userData, password: '***' });
+      const userEmail = userData.email;
+
+      // Sign in with email and password
+      console.log('Attempting Firebase Auth with email:', userEmail);
+      await signInWithEmailAndPassword(auth, userEmail, password);
+      console.log('Login successful!');
       // Authentication state will be updated automatically
     } catch (err) {
-      setError(err.message);
+      console.error('Login error:', err);
+      if (err.code === 'auth/invalid-credential') {
+        setError("Usuario o contraseña incorrectos");
+      } else {
+        setError("Error al iniciar sesión: " + err.message);
+      }
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleLogin();
     }
   };
 
@@ -35,16 +71,18 @@ function Login() {
           <WindowContent>
             <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               <TextInput
-                placeholder='Email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                placeholder='Usuario'
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+                onKeyPress={handleKeyPress}
                 fullWidth
               />
               <TextInput
-                placeholder='Password'
+                placeholder='Contraseña'
                 type='password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                onKeyPress={handleKeyPress}
                 fullWidth
               />
               <Button onClick={handleLogin}>
