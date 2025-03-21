@@ -49,10 +49,9 @@ function Login() {
     }
   };
 
-  const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      handleLogin();
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault(); // Prevent form default submission
+    handleLogin();
   };
 
   return (
@@ -69,12 +68,11 @@ function Login() {
             <span>Login</span>
           </WindowHeader>
           <WindowContent>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+            <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
               <TextInput
                 placeholder='Usuario'
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                onKeyPress={handleKeyPress}
                 fullWidth
               />
               <TextInput
@@ -82,14 +80,13 @@ function Login() {
                 type='password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                onKeyPress={handleKeyPress}
                 fullWidth
               />
-              <Button onClick={handleLogin}>
+              <Button type="submit">
                 Login
               </Button>
               {error && <div style={{ color: 'red' }}>{error}</div>}
-            </div>
+            </form>
           </WindowContent>
         </Window>
       </div>
