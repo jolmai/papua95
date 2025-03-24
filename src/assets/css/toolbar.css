@@ -20,6 +20,22 @@
   bottom: 100%;
   margin: 0;
   padding: 0;
+  display: flex !important;
+}
+.nombreMenu{
+  writing-mode: sideways-lr;
+  text-orientation: sideways;
+  padding: 0 7px;
+}
+.nombreMenu h2 {
+  font-size: 40px;
+  letter-spacing: 2px;
+  margin: 0;
+  padding: 0;
+}
+.nombreMenu h2 span{
+  font-weight: 400;
+
 }
 .itemMenu{
   padding-right: 100px !important;
