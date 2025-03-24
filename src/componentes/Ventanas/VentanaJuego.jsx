@@ -19,6 +19,7 @@ function VentanaJuego({idJuego, onClose, posicion, isFocused, onClick}) {
             <iframe
                 src={juego.iframeSrc}
                 title={juego.nombre}
+                key={juego.id}
                 allow='autoplay; fullscreen'
                 style={{ 
                     width: '100%', 
