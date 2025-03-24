@@ -26,6 +26,7 @@
   writing-mode: sideways-lr;
   text-orientation: sideways;
   padding: 0 7px;
+  color: lightgrey;
 }
 .nombreMenu h2 {
   font-size: 40px;
@@ -35,7 +36,7 @@
 }
 .nombreMenu h2 span{
   font-weight: 400;
-
+  color: white;
 }
 .itemMenu{
   padding-right: 100px !important;

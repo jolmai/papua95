@@ -189,7 +189,7 @@ function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
                     alter={'icono-ejecutar'} 
                     texto='Ejecutar...' 
                   />
-                  <Separator />
+                  <Separator size='97%' style={{marginLeft:'5px'}}/>
                   <MenuItem 
                     icono={apagar} 
                     alter={'icono-apagar'} 
