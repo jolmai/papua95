@@ -12,7 +12,6 @@ function VentanaJuego({idJuego, onClose, posicion, isFocused, onClick}) {
             position: 'absolute',
             left: `${posicion.x}px`,
             top: `${posicion.y}px`,
-            minHeight: '500px',
             padding: '0',
             zIndex: isFocused ? 1000 : 1,
         }}
@@ -25,7 +24,12 @@ function VentanaJuego({idJuego, onClose, posicion, isFocused, onClick}) {
                     width: '100%', 
                     height: '100%', 
                     border: 'none', 
-                    backgroundColor: '#000',
+                    display: 'block',
+                    position: 'absolute', 
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0
                 }}
             />
         </Ventana>

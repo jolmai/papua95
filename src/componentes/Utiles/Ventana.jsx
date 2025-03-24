@@ -80,7 +80,7 @@ function Ventana ({ titulo, onClose, children, style, onClick, tipoVentana, dime
                 <MenuListItem size='sm'>Vista</MenuListItem>
             </MenuList>
             <WindowContent className="contentContent">
-                <Frame variant='field' style={{height: `${contentHeight}px`, width: '100%'}}>
+                <Frame variant='field' style={{height: `${contentHeight}px`, width: '100%', overflow: 'hidden'}}>
                     <div style={{display: 'flex', flexWrap: 'wrap', alignItems: 'center'}}>
                         {children}
                     </div>
