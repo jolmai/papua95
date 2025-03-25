@@ -7,6 +7,7 @@ import libro from '../../assets/img/iconos/book.ico';
 import configuracion from '../../assets/img/iconos/Settings.ico';
 import programas from '../../assets/img/iconos/programs.ico';
 import apagar from '../../assets/img/iconos/off.ico';
+import cerrarSesion from '../../assets/img/iconos/Key.ico';
 import documentos from '../../assets/img/iconos/web-documents.ico';
 import find from '../../assets/img/iconos/find.ico';
 import ejecutar from '../../assets/img/iconos/run.ico';
@@ -87,7 +88,7 @@ function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
   };
 
   const abrirCarpeta = () => {
-    // Implementation can be added here if needed
+    
   };
 
   const abrirBuscador = () => {
@@ -190,6 +191,11 @@ function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
                     texto='Ejecutar...' 
                   />
                   <Separator size='97%' style={{marginLeft:'5px'}}/>
+                  <MenuItem 
+                    icono={cerrarSesion} 
+                    alter={'icono-llaves'} 
+                    texto='Cerrar Sesión...' 
+                  />
                   <MenuItem 
                     icono={apagar} 
                     alter={'icono-apagar'} 
