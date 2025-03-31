@@ -49,7 +49,7 @@ function Escritorio() {
             tipo,
             idJuego: id,
             nombre,
-            posicion: { x: Math.random() * (window.innerWidth * 0.3), y: Math.random() * (window.innerHeight * 0.3) }, 
+            posicion: { x: Math.random() * (window.innerWidth * 0.3), y: Math.random() * (window.innerHeight * 0.1) }, 
             icono,
         };
         eligeVentanaAbierta([...ventanaAbierta, nuevaVentana]);
