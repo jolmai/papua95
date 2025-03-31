@@ -15,6 +15,8 @@ import '../../assets/css/toolbar.css';
 import TiempoActual from '../Utiles/TiempoActual.jsx'
 import PropTypes from 'prop-types';
 import Buscador from '../Utiles/Buscador.jsx';
+import { auth } from '../../firebaseConfig';
+import { useNavigate } from 'react-router-dom';
 
 function MenuItem({icono, alter, texto, onClick}) {
   return (
@@ -41,6 +43,7 @@ function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
   const menuRef = useRef(null);
   const dragItem = useRef();
   const dragOverItem = useRef();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (windows.length === 0) {
@@ -94,6 +97,15 @@ function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
   const abrirBuscador = () => {
     setShowSearch(true);
     setOpen(false);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+      navigate('/login');
+    } catch (error) {
+      console.error('Error al cerrar sesión:', error);
+    }
   };
 
   useEffect(() => {
@@ -195,6 +207,7 @@ function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
                     icono={cerrarSesion} 
                     alter={'icono-llaves'} 
                     texto='Cerrar Sesión...' 
+                    onClick={handleLogout}
                   />
                   <MenuItem 
                     icono={apagar} 

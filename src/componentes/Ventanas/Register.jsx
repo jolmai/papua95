@@ -1,74 +1,80 @@
 import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import original from 'react95/dist/themes/original';
-import { signInWithEmailAndPassword, signInAnonymously } from "firebase/auth";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { collection, addDoc, query, where, getDocs, setDoc, doc } from "firebase/firestore";
 import { auth, db } from '../../firebaseConfig';
 import { Window, WindowHeader, WindowContent, Button, TextInput } from 'react95';
 import { useNavigate } from 'react-router-dom';
 
-function Login() {
+function Register() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleRegister = async () => {
     try {
-      console.log('Attempting login with username:', username);
-      
-      // Query Firestore to get the email associated with the username
-      const usersRef = collection(db, "Usuarios");
-      const q = query(usersRef, where("usuario", "==", username));
-      
-      console.log('Querying Firestore for user...');
-      const querySnapshot = await getDocs(q);
-      console.log('Query results:', querySnapshot.size, 'documents found');
-
-      if (querySnapshot.empty) {
-        console.log('No user found with username:', username);
-        setError("Usuario no encontrado");
+      // Validaciones
+      if (!username || !password || !confirmPassword) {
+        setError("Todos los campos son obligatorios");
         return;
       }
 
-      const userDoc = querySnapshot.docs[0];
-      const userData = userDoc.data();
-      console.log('User data found:', { ...userData, password: '***' });
-      const userEmail = userData.email;
-
-      // Sign in with email and password
-      console.log('Attempting Firebase Auth with email:', userEmail);
-      await signInWithEmailAndPassword(auth, userEmail, password);
-      console.log('Login successful!');
-      navigate('/');
-    } catch (err) {
-      console.error('Login error:', err);
-      if (err.code === 'auth/invalid-credential') {
-        setError("Usuario o contraseña incorrectos");
-      } else {
-        setError("Error al iniciar sesión: " + err.message);
+      if (password !== confirmPassword) {
+        setError("Las contraseñas no coinciden");
+        return;
       }
-    }
-  };
 
-  const handleGuestLogin = async () => {
-    try {
-      await signInAnonymously(auth);
-      console.log('Guest login successful!');
+      if (password.length < 6) {
+        setError("La contraseña debe tener al menos 6 caracteres");
+        return;
+      }
+
+      // Verificar si el usuario ya existe
+      const usersRef = collection(db, "Usuarios");
+      const q = query(usersRef, where("usuario", "==", username));
+      const querySnapshot = await getDocs(q);
+
+      if (!querySnapshot.empty) {
+        setError("El nombre de usuario ya está en uso");
+        return;
+      }
+
+      // Crear el email basado en el nombre de usuario
+      const userEmail = `${username}@gmail.com`;
+      
+      // Crear usuario en Firebase Auth
+      const userCredential = await createUserWithEmailAndPassword(auth, userEmail, password);
+      
+      // Guardar información en Firestore usando el UID como ID del documento
+      await setDoc(doc(db, "Usuarios", userCredential.user.uid), {
+        email: userEmail,
+        usuario: username
+      });
+
+      console.log('Registro exitoso!');
       navigate('/');
     } catch (err) {
-      console.error('Guest login error:', err);
-      setError("Error al iniciar sesión como invitado: " + err.message);
+      console.error('Error de registro:', err);
+      if (err.code === 'auth/email-already-in-use') {
+        setError("El usuario ya está registrado");
+      } else if (err.code === 'auth/invalid-email') {
+        setError("Email inválido");
+      } else {
+        setError("Error al registrar: " + err.message);
+      }
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    handleLogin();
+    handleRegister();
   };
 
-  const goToRegister = () => {
-    navigate('/register');
+  const goToLogin = () => {
+    navigate('/login');
   };
 
   return (
@@ -82,7 +88,7 @@ function Login() {
       }}>
         <Window style={{ width: '400px' }}>
           <WindowHeader className='barraVentana'>
-            <span>Login</span>
+            <span>Registro</span>
           </WindowHeader>
           <WindowContent>
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
@@ -99,16 +105,19 @@ function Login() {
                 onChange={(e) => setPassword(e.target.value)}
                 fullWidth
               />
+              <TextInput
+                placeholder='Confirmar Contraseña'
+                type='password'
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                fullWidth
+              />
               <Button type="submit">
-                Login
-              </Button>
-              <div style={{ textAlign: 'center', margin: '8px 0' }}>or</div>
-              <Button onClick={goToRegister}>
                 Registrarse
               </Button>
               <div style={{ textAlign: 'center', margin: '8px 0' }}>or</div>
-              <Button onClick={handleGuestLogin}>
-                Invitado
+              <Button onClick={goToLogin}>
+                Volver al Login
               </Button>
               {error && <div style={{ color: 'red' }}>{error}</div>}
             </form>
@@ -119,4 +128,4 @@ function Login() {
   );
 }
 
-export default Login; 
+export default Register; 
