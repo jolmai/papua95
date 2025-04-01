@@ -91,6 +91,7 @@ function Login() {
               <Button onClick={goToRegister}>
                 Registrarse
               </Button>
+              <div style={{ textAlign: 'center', margin: '8px 0' }}>--------------------------------------------</div>
               <Button onClick={handleGuestLogin}>
                 Invitado
               </Button>
