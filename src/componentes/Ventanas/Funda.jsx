@@ -3,8 +3,18 @@ import Ventana from "../Utiles/Ventana.jsx";
 import Iconos from "../Utiles/Iconos.jsx";
 import Juegos from "../js/Juegos.js";
 import Carpeta from '../../assets/img/iconos/carpeta.ico';
+import { auth } from '../../firebaseConfig';
 
 function Funda({onClose, eligeVentanaAbierta, onClick, isFocused, posicion}) {
+    const handleIconClick = (id, type) => {
+        if (auth.currentUser?.isAnonymous) {
+            // If user is anonymous, show an alert and don't open the game
+            alert("Necesitas iniciar sesión para jugar. Los invitados no pueden acceder a los juegos.");
+            return;
+        }
+        eligeVentanaAbierta(id, type);
+    };
+
     return(
         <Ventana titulo='La Funda' onClose={onClose} tipoVentana="funda" iconHeader={Carpeta}
             style={{
@@ -20,7 +30,7 @@ function Funda({onClose, eligeVentanaAbierta, onClick, isFocused, posicion}) {
                             alter={`icono-${juego.id}`} 
                             nombre={juego.nombre} 
                             idIcono={juego.id} 
-                            onClick={() => eligeVentanaAbierta(juego.id, 'juego')}
+                            onClick={() => handleIconClick(juego.id, 'juego')}
                             estaDentroCarpeta={true}/>
                 ))}
             </div>

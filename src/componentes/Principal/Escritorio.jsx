@@ -4,12 +4,14 @@ import original from 'react95/dist/themes/original';
 import MiPC from '../../assets/img/iconos/mipc.ico';
 import Papelera from '../../assets/img/iconos/papelera.ico';
 import Carpeta from '../../assets/img/iconos/carpeta.ico';
+import ejecutar from '../../assets/img/iconos/run.ico';
 import '../../assets/css/icon.css';
 import Icono from '../Utiles/Iconos.jsx';
 import Funda from '../Ventanas/Funda.jsx';
 import VentanaPapelera from '../Ventanas/VentanaPapelera.jsx';
 import VentanaMiPC from '../Ventanas/VentanaMiPC.jsx';
 import VentanaJuego from '../Ventanas/VentanaJuego.jsx';
+import Minesweeper from '../Ventanas/Minesweeper.jsx';
 import WinToolbar from './WinToolbar.jsx';
 import juegos from '../js/Juegos.js';
 
@@ -37,9 +39,14 @@ function Escritorio() {
         let icono = '';
 
         if (tipo === 'juego') {
-            const juego = juegos.find((juego) => juego.id === id);
-            nombre = juego.nombre;
-            icono = juego.icono;
+            if (id === 'minesweeper') {
+                nombre = 'Buscaminas';
+                icono = ejecutar; // You'll need to import this icon
+            } else {
+                const juego = juegos.find((juego) => juego.id === id);
+                nombre = juego.nombre;
+                icono = juego.icono;
+            }
         } else {
             nombre = tipo === 'mipc' ? 'Mi PC' : tipo === 'papelera' ? 'Papelera' : tipo === 'funda' ? 'La funda' : 'Juego';
             icono = tipo === 'mipc' ? MiPC : tipo === 'papelera' ? Papelera : tipo === 'funda' ? Carpeta : '';
@@ -288,6 +295,11 @@ function Escritorio() {
                             <Funda key={ventana.id} eligeVentanaAbierta={(id, tipo) => abrirVentana(id, tipo)} onClose={() => cerrarVentana(ventana.id)} posicion={ventana.posicion} onClick={() => focusVentana(ventana.id)}/>
                         );
                     } else if (ventana.tipo === 'juego') {
+                        if (ventana.idJuego === 'minesweeper') {
+                            return (
+                                <Minesweeper key={ventana.id} onClose={() => cerrarVentana(ventana.id)} />
+                            );
+                        }
                         return (
                             <VentanaJuego key={ventana.id} idJuego={ventana.idJuego} onClose={() => cerrarVentana(ventana.id)} posicion={ventana.posicion} isFocused={ventanaAbierta[ventanaAbierta.length - 1].id === ventana.id} onClick={() => focusVentana(ventana.id)}/>
                         );

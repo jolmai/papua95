@@ -65,6 +65,22 @@ function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
     }
   }, [ventanasAbiertas]);
 
+  // Add keyboard event listener for Windows key
+  useEffect(() => {
+    const handleKeyPress = (event) => {
+      // Check for Windows key (Meta key) press
+      if (event.key === 'Meta' || event.key === 'Super') {
+        event.preventDefault(); // Prevent default browser behavior
+        event.stopPropagation(); // Stop event from bubbling up
+        setOpen(prev => !prev); // Toggle menu
+      }
+    };
+
+    // Use capture phase to intercept the event before it reaches the browser
+    window.addEventListener('keydown', handleKeyPress, true);
+    return () => window.removeEventListener('keydown', handleKeyPress, true);
+  }, []);
+
   const handleDragStart = (e, position) => {
     dragItem.current = position;
     e.target.style.opacity = '0.5';
@@ -91,11 +107,22 @@ function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
   };
 
   const abrirCarpeta = () => {
-    
+    window.eligeVentanaAbierta('funda', 'funda');
+    setOpen(false);
   };
 
   const abrirBuscador = () => {
     setShowSearch(true);
+    setOpen(false);
+  };
+
+  const abrirAyuda = () => {
+    window.open('https://www.computerhope.com/wqanda.htm', '_blank');
+    setOpen(false);
+  };
+
+  const abrirMinesweeper = () => {
+    window.eligeVentanaAbierta('minesweeper', 'juego');
     setOpen(false);
   };
 
@@ -161,7 +188,6 @@ function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
               </div>
             ))}
             {open && (
-              
               <MenuList className='listaMenu' onClick={() => setOpen(false)}>
                 <div style={{backgroundColor: 'gray', display:'flex', paddingBottom:'12px'}}>
                   <div className='nombreMenu'>
@@ -196,11 +222,13 @@ function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
                     icono={libro} 
                     alter={'icono-ayuda'} 
                     texto='Ayuda' 
+                    onClick={abrirAyuda}
                   />
                   <MenuItem 
                     icono={ejecutar} 
                     alter={'icono-ejecutar'} 
                     texto='Ejecutar...' 
+                    onClick={abrirMinesweeper}
                   />
                   <Separator size='97%' style={{marginLeft:'5px'}}/>
                   <MenuItem 
@@ -216,7 +244,6 @@ function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
                     onClick={cerrarVentana}
                   />
                 </div>
-                
               </MenuList>
             )}
           </div>
