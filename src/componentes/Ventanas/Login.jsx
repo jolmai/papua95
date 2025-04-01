@@ -15,29 +15,15 @@ function Login() {
 
   const handleLogin = async () => {
     try {
-      console.log('Attempting login with username:', username);
-      
-      // Query Firestore to get the email associated with the username
-      const usersRef = collection(db, "Usuarios");
-      const q = query(usersRef, where("usuario", "==", username));
-      
-      console.log('Querying Firestore for user...');
-      const querySnapshot = await getDocs(q);
-      console.log('Query results:', querySnapshot.size, 'documents found');
-
-      if (querySnapshot.empty) {
-        console.log('No user found with username:', username);
-        setError("Usuario no encontrado");
+      if (!username || !password) {
+        setError("Todos los campos son obligatorios");
         return;
       }
 
-      const userDoc = querySnapshot.docs[0];
-      const userData = userDoc.data();
-      console.log('User data found:', { ...userData, password: '***' });
-      const userEmail = userData.email;
-
+      // Create email from username
+      const userEmail = `${username}@gmail.com`;
+      
       // Sign in with email and password
-      console.log('Attempting Firebase Auth with email:', userEmail);
       await signInWithEmailAndPassword(auth, userEmail, password);
       console.log('Login successful!');
       navigate('/');
@@ -102,11 +88,9 @@ function Login() {
               <Button type="submit">
                 Login
               </Button>
-              <div style={{ textAlign: 'center', margin: '8px 0' }}>or</div>
               <Button onClick={goToRegister}>
                 Registrarse
               </Button>
-              <div style={{ textAlign: 'center', margin: '8px 0' }}>or</div>
               <Button onClick={handleGuestLogin}>
                 Invitado
               </Button>

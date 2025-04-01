@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 import original from 'react95/dist/themes/original';
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { collection, addDoc, query, where, getDocs, setDoc, doc } from "firebase/firestore";
+import { setDoc, doc } from "firebase/firestore";
 import { auth, db } from '../../firebaseConfig';
 import { Window, WindowHeader, WindowContent, Button, TextInput } from 'react95';
 import { useNavigate } from 'react-router-dom';
@@ -32,23 +32,13 @@ function Register() {
         return;
       }
 
-      // Verificar si el usuario ya existe
-      const usersRef = collection(db, "Usuarios");
-      const q = query(usersRef, where("usuario", "==", username));
-      const querySnapshot = await getDocs(q);
-
-      if (!querySnapshot.empty) {
-        setError("El nombre de usuario ya está en uso");
-        return;
-      }
-
       // Crear el email basado en el nombre de usuario
       const userEmail = `${username}@gmail.com`;
       
       // Crear usuario en Firebase Auth
       const userCredential = await createUserWithEmailAndPassword(auth, userEmail, password);
       
-      // Guardar información en Firestore usando el UID como ID del documento
+      // Guardar información básica en Firestore
       await setDoc(doc(db, "Usuarios", userCredential.user.uid), {
         email: userEmail,
         usuario: username
@@ -60,8 +50,6 @@ function Register() {
       console.error('Error de registro:', err);
       if (err.code === 'auth/email-already-in-use') {
         setError("El usuario ya está registrado");
-      } else if (err.code === 'auth/invalid-email') {
-        setError("Email inválido");
       } else {
         setError("Error al registrar: " + err.message);
       }
