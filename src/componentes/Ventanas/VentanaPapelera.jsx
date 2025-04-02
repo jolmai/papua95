@@ -15,7 +15,7 @@ function VentanaPapelera({onClose, posicion, isFocused, onClick}){
         }}
         onClick={onClick}
         >
-            <Icono icono={Notepad} alter={'icono-notepad'} nombre={'Proyecto Papua'} idIcono={'papelera'} estaDentroCarpeta={true}/>
+            <Icono icono={Notepad} alter={'icono-notepad'} nombre={'Papua'} idIcono={'papelera'} estaDentroCarpeta={true}/>
         </Ventana>
     );
 }

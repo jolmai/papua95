@@ -20,7 +20,7 @@
     flex-direction: column;
     align-items: center;
     cursor: pointer;
-    padding: 8px;
+    padding: 10px;
     min-width: 75px;
     border: 0 !important;
     background: transparent !important;
@@ -37,8 +37,12 @@
 }
 
 .icon-container {
-    position: relative;
-    padding: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center ;
+    width: 88px;
+    text-align: center;
+    padding: 2px 5.6px;
 }
 
 .icon-container.selected {
@@ -83,3 +87,4 @@
     padding: 0 !important;
     margin-left: 10px;
 }
+
