@@ -1,14 +1,22 @@
 import React, { forwardRef } from "react";
 import { Frame, Tooltip } from 'react95';
 
-const Iconos = forwardRef(({icono, alter, nombre, idIcono, onClick, estaDentroCarpeta, isSelected}, ref) => {
+const Iconos = forwardRef(({icono, alter, nombre, idIcono, onClick, onDoubleClick, estaDentroCarpeta, isSelected}, ref) => {
+    const handleClick = (e) => {
+        e.stopPropagation();
+        onClick && onClick(e);
+    };
+
+    const handleDoubleClick = (e) => {
+        e.stopPropagation();
+        onDoubleClick && onDoubleClick(e);
+    };
+
     return(
         <div 
             ref={ref}
-            onClick={(e) => {
-                e.stopPropagation();
-                onClick(e);
-            }}
+            onClick={handleClick}
+            onDoubleClick={handleDoubleClick}
             className={`icon-container ${isSelected ? 'selected' : ''}`}
         >
             <Tooltip style={{backgroundColor: 'white'}} text={nombre} enterDelay={100} leaveDelay={100} position='bottom'>
