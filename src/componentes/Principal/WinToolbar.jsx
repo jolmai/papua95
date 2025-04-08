@@ -237,12 +237,6 @@ function WinToolbar({ ventanasAbiertas, onFocusVentana }) {
                     texto='Cerrar Sesión...' 
                     onClick={handleLogout}
                   />
-                  <MenuItem 
-                    icono={apagar} 
-                    alter={'icono-apagar'} 
-                    texto='Apagar' 
-                    onClick={cerrarVentana}
-                  />
                 </div>
               </MenuList>
             )}
