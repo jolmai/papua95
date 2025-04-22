@@ -23,16 +23,19 @@
   display: flex !important;
 }
 .nombreMenu{
-  writing-mode: sideways-lr;
-  text-orientation: sideways;
-  padding: 0 7px;
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+  margin: 0 7px;
   color: lightgrey;
+  display: flex;
+  min-width: 40px;
 }
 .nombreMenu h2 {
   font-size: 40px;
   letter-spacing: 2px;
   margin: 0;
-  padding: 0;
+  white-space: nowrap;
 }
 .nombreMenu h2 span{
   font-weight: 400;
