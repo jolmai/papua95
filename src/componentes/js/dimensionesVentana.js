@@ -5,7 +5,8 @@ const dimensionVentana = {
     rana:{width: 900, height: 600},
     dungeon:{width: 800, height: 560},
     peixe:{width: 1200, height: 800},
-    nostalgia:{width: 1200, height: 800}
+    nostalgia:{width: 1200, height: 800},
+    dino:{width: 1920, height: 1080}
 }
 
 export default dimensionVentana;
