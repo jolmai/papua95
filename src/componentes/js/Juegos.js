@@ -4,7 +4,7 @@ const juegos = [
     { id: 'nostalgia', icono: '/icono-juego/nostalgiadutemp_icon.jpg', nombre: 'Nostalgia du Tempoo', iframeSrc: '/juegos/nostalgia+/Nostalgia.html'},
     { id: 'peixe', icono: '/icono-juego/pelepeixe.jpg', nombre: 'Pelé Peixe', iframeSrc: '/juegos/Pelé Peixe/pescaos.html'},
     { id: 'dodge5', icono: '/icono-juego/dodge.png', nombre: 'Dodge', iframeSrc: '/juegos/dodge/index.html'},
-    { id: 'dino', icono: '/icono-juego/icono-cachondino.png', nombre: 'Cachondino 2 Demo', iframeSrc: '/juegos/cachondino2+/Cachondintu.html'}
+    { id: 'dino', icono: '/icono-juego/icono-cachondino.png', nombre: 'Cachondino 2 Demo', iframeSrc: '/juegos/cachondin2+/Cachondintu.html'}
 ];
 
 export default juegos;
