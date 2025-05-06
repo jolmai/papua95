@@ -6,10 +6,12 @@ import MiPC from '../../assets/img/iconos/mipc.ico';
 import Papelera from '../../assets/img/iconos/papelera.ico';
 import Carpeta from '../../assets/img/iconos/carpeta.ico';
 import ejecutar from '../../assets/img/iconos/run.ico';
+import WordPad from '../../assets/img/iconos/WordPad.ico';
 import '../../assets/css/icon.css';
 import Icono from '../Utiles/Iconos.jsx';
 import Funda from '../Ventanas/Funda.jsx';
 import VentanaPapelera from '../Ventanas/VentanaPapelera.jsx';
+import VentanaPDF from '../Ventanas/VentanaPDF.jsx';
 import VentanaMiPC from '../Ventanas/VentanaMiPC.jsx';
 import VentanaJuego from '../Ventanas/VentanaJuego.jsx';
 import Minesweeper from '../Ventanas/Minesweeper.jsx';
@@ -49,7 +51,12 @@ function Escritorio() {
                 nombre = juego.nombre;
                 icono = juego.icono;
             }
-        } else {
+        }
+        else if (tipo === 'presentacion') {
+            nombre = 'Presentación Papua';
+            icono = WordPad;
+        }
+        else {
             nombre = tipo === 'mipc' ? 'Mi PC' : tipo === 'papelera' ? 'Papelera' : tipo === 'funda' ? 'La funda' : 'Juego';
             icono = tipo === 'mipc' ? MiPC : tipo === 'papelera' ? Papelera : tipo === 'funda' ? Carpeta : '';
         }
@@ -80,10 +87,17 @@ function Escritorio() {
             case 'funda': 
                 tipo = 'funda';
                 break;
+            case 'presentacion':
+                tipo = 'presentacion'  // o 'presentacion' si prefieres usar ese nombre
+                break;
             default:
                 tipo = 'juego';
         }
-        abrirVentana(idIcono, tipo);
+        if (tipo === 'presentacion') {
+            abrirVentana('presentacion.pdf', tipo);
+        } else {
+            abrirVentana(idIcono, tipo);
+        }
     };
 
     const focusVentana = (id) => {
@@ -362,6 +376,18 @@ function Escritorio() {
                             onClick={(e) => handleIconClick('funda', e)}
                             isSelected={selectedIcons.has('funda')}
                         />
+                        <Icono 
+                            ref={(el) => {
+                                if (el) iconRefs.current.set('presentacion', el);
+                                else iconRefs.current.delete('presentacion');
+                            }}
+                            icono={WordPad} 
+                            alter={'icono-presentacion'} 
+                            nombre={'Papua.pdf'} 
+                            idIcono={'presentacion'} 
+                            onClick={(e) => handleIconClick('presentacion', e)}
+                            isSelected={selectedIcons.has('presentacion')}
+                        />
                     </div>
                 </div>
                 
@@ -393,6 +419,17 @@ function Escritorio() {
                     } else if (ventana.tipo === 'funda') {
                         return (
                             <Funda key={ventana.id} eligeVentanaAbierta={(id, tipo) => abrirVentana(id, tipo)} onClose={() => cerrarVentana(ventana.id)} posicion={ventana.posicion} onClick={() => focusVentana(ventana.id)}/>
+                        );
+                    } else if (ventana.tipo === 'presentacion') {  // Añade este caso
+                        return (
+                            <VentanaPDF 
+                                key={ventana.id} 
+                                nombrePDF="presentacion.pdf"
+                                onClose={() => cerrarVentana(ventana.id)} 
+                                posicion={ventana.posicion} 
+                                isFocused={ventanaAbierta[ventanaAbierta.length - 1].id === ventana.id} 
+                                onClick={() => focusVentana(ventana.id)}
+                            />
                         );
                     } else if (ventana.tipo === 'juego') {
                         if (ventana.idJuego === 'minesweeper') {
