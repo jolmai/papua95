@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { ThemeProvider } from 'styled-components';
 import original from 'react95/dist/themes/original';
-import { MenuList, MenuListItem, Separator } from 'react95';
 import MiPC from '../../assets/img/iconos/mipc.ico';
 import Papelera from '../../assets/img/iconos/papelera.ico';
 import Carpeta from '../../assets/img/iconos/carpeta.ico';
@@ -24,7 +23,6 @@ function Escritorio() {
     const [isSelecting, setIsSelecting] = useState(false);
     const [selectionStart, setSelectionStart] = useState({ x: 0, y: 0 });
     const [selectionEnd, setSelectionEnd] = useState({ x: 0, y: 0 });
-    const [contextMenu, setContextMenu] = useState({ visible: false, x: 0, y: 0 });
     const desktopRef = useRef(null);
     const lastClickTime = useRef(0);
     const iconRefs = useRef(new Map());
@@ -137,22 +135,6 @@ function Escritorio() {
     };
 
     const handleDesktopMouseDown = (event) => {
-        // Si es clic derecho, mostrar menú contextual
-        if (event.button === 2) {
-            event.preventDefault();
-            setContextMenu({
-                visible: true,
-                x: event.clientX,
-                y: event.clientY
-            });
-            return;
-        }
-        
-        // Cerrar el menú contextual si está abierto
-        if (contextMenu.visible) {
-            setContextMenu({ ...contextMenu, visible: false });
-        }
-        
         // Only start selection if clicking directly on the desktop or containerIconos
         if (event.target === desktopRef.current || event.target.className === 'containerIconos') {
             setIsSelecting(true);
@@ -235,58 +217,6 @@ function Escritorio() {
         };
     }, [ventanaAbierta]);
 
-    // Función para cerrar el menú contextual
-    const closeContextMenu = () => {
-        setContextMenu({ ...contextMenu, visible: false });
-    };
-
-    // Función para crear un nuevo elemento
-    const handleNewItem = (type) => {
-        if (type === 'folder') {
-            // Aquí se implementaría la lógica para crear una nueva carpeta
-            console.log('Crear nueva carpeta');
-        } else if (type === 'shortcut') {
-            // Aquí se implementaría la lógica para crear un nuevo acceso directo
-            console.log('Crear nuevo acceso directo');
-        }
-        closeContextMenu();
-    };
-
-    // Función para actualizar la vista
-    const handleRefresh = () => {
-        // Aquí se implementaría la lógica para actualizar la vista
-        console.log('Actualizar vista');
-        closeContextMenu();
-    };
-
-    // Función para cambiar el fondo
-    const handleChangeBackground = () => {
-        // Aquí se implementaría la lógica para cambiar el fondo
-        console.log('Cambiar fondo');
-        closeContextMenu();
-    };
-
-    // Función para mostrar propiedades
-    const handleShowProperties = () => {
-        // Aquí se implementaría la lógica para mostrar propiedades
-        console.log('Mostrar propiedades');
-        closeContextMenu();
-    };
-
-    // Cerrar el menú contextual al hacer clic en cualquier parte del documento
-    useEffect(() => {
-        const handleClickOutside = () => {
-            if (contextMenu.visible) {
-                closeContextMenu();
-            }
-        };
-        
-        document.addEventListener('click', handleClickOutside);
-        return () => {
-            document.removeEventListener('click', handleClickOutside);
-        };
-    }, [contextMenu.visible]);
-
     return(
         <ThemeProvider theme={original}>
             <div 
@@ -295,38 +225,9 @@ function Escritorio() {
                 onMouseDown={handleDesktopMouseDown}
                 onMouseMove={handleDesktopMouseMove}
                 onMouseUp={handleDesktopMouseUp}
-                onContextMenu={(e) => e.preventDefault()} // Prevenir el menú contextual predeterminado
+                onContextMenu={(e) => e.preventDefault()} // Keep preventing default context menu
                 style={{ width: '100vw', height: '100vh', position: 'relative' }}
             >
-                {/* Menú contextual */}
-                {contextMenu.visible && (
-                    <div 
-                        style={{ 
-                            position: 'fixed', 
-                            top: contextMenu.y, 
-                            left: contextMenu.x, 
-                            zIndex: 1000 
-                        }}
-                    >
-                        <MenuList>
-                            <MenuListItem onClick={() => handleNewItem('folder')}>
-                                Nueva Carpeta
-                            </MenuListItem>
-                            <MenuListItem onClick={() => handleNewItem('shortcut')}>
-                                Nuevo txt
-                            </MenuListItem>
-                            <Separator />
-                            <MenuListItem onClick={handleRefresh}>
-                                Actualizar
-                            </MenuListItem>
-                            <Separator />
-                            <MenuListItem onClick={handleShowProperties}>
-                                Propiedades
-                            </MenuListItem>
-                        </MenuList>
-                    </div>
-                )}
-                
                 <div 
                     className='containerIconos'
                     style={{ 
@@ -338,7 +239,6 @@ function Escritorio() {
                         pointerEvents: 'none' // This allows clicks to pass through to the desktop
                     }}
                 >
-                    {/* Make the icons have pointer-events: auto to still be clickable */}
                     <div style={{ pointerEvents: 'auto' }}>
                         <Icono 
                             ref={(el) => {
