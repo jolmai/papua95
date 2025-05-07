@@ -3,16 +3,10 @@
     "public": "public",
     "headers": [
       {
-        "source": "/juegos/joahorror+/JOAHORROR.pck",
+        "source": "/juegos/joahorror+/(.*\\.pck)",
         "headers": [
-          { 
-            "key": "Access-Control-Allow-Origin", 
-            "value": "*" 
-          },
-          { 
-            "key": "Content-Type", 
-            "value": "application/octet-stream"  
-          }
+          { "key": "Access-Control-Allow-Origin", "value": "*" },
+          { "key": "Content-Type", "value": "application/octet-stream" }
         ]
       }
     ]
