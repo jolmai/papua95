@@ -1,18 +1,19 @@
 {
     "version": 2,
-    "public": "public",  
+    "public": "public",
     "headers": [
       {
-        "source": "/juegos/joahorror+/JOAHORROR.pck", 
+        "source": "/juegos/joahorror+/JOAHORROR.pck",
         "headers": [
           { 
             "key": "Access-Control-Allow-Origin", 
-            "value": "*"  
+            "value": "*" 
+          },
+          { 
+            "key": "Content-Type", 
+            "value": "application/octet-stream"  
           }
         ]
       }
-    ],
-    "gitLFS": {
-      "enabled": true  
-    }
+    ]
   }
