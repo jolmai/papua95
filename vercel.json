@@ -1,23 +1,7 @@
 {
     "version": 2,
-    "builds": [
-      {
-        "src": "public/**",
-        "use": "@vercel/static"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/juegos/joahorror+/(.*\\.pck)",
-        "headers": {
-          "Access-Control-Allow-Origin": "*",
-          "Content-Type": "application/octet-stream"
-        }
-      },
-      {
-        "src": "/juegos/joahorror+/(.*)",
-        "dest": "/juegos/joahorror+/JOAHORROR.html",
-        "status": 200
-      }
-    ]
+    "builds": [{
+      "src": "public/**",
+      "use": "@vercel/static"
+    }]
   }
