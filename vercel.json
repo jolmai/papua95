@@ -1,0 +1,18 @@
+{
+    "version": 2,
+    "public": "public",  
+    "headers": [
+      {
+        "source": "/juegos/joahorror+/JOAHORROR.pck", 
+        "headers": [
+          { 
+            "key": "Access-Control-Allow-Origin", 
+            "value": "*"  
+          }
+        ]
+      }
+    ],
+    "gitLFS": {
+      "enabled": true  
+    }
+  }
