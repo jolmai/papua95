@@ -1,21 +1,23 @@
 {
-    "version": 2,   
+    "version": 2,
     "builds": [
       {
         "src": "public/**",
         "use": "@vercel/static"
       }
     ],
-    "headers": [
+    "routes": [
       {
-        "source": "/juegos/joahorror+/(.+\\.pck)",
-        "headers": [
-          { "key": "Access-Control-Allow-Origin", "value": "*" },
-          { "key": "Content-Type", "value": "application/octet-stream" }
-        ]
+        "src": "/juegos/joahorror+/(.*\\.pck)",
+        "headers": {
+          "Access-Control-Allow-Origin": "*",
+          "Content-Type": "application/octet-stream"
+        }
+      },
+      {
+        "src": "/juegos/joahorror+/(.*)",
+        "dest": "/juegos/joahorror+/JOAHORROR.html",
+        "status": 200
       }
-    ],
-    "rewrites": [
-      { "source": "/juegos/joahorror+/(.*)", "destination": "/juegos/joahorror+/JOAHORROR.html" }
     ]
   }
