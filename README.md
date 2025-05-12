@@ -1,4 +1,21 @@
 <h1>Papua95</h1>
+
+🌐 Ya hay una versión en línea aquí: [papua95s.vercel.app](https://papua95s.vercel.app)
+##### *Para jugar hay que registrarse 
+
+## 🛠️ Guía de implementación
+
+Sigue estos pasos para ejecutar la aplicación localmente.
+
+### 1. Clona el repositorio
+git clone https://github.com/jolmai/papua95
+### 2. Instala las dependencias
+Asegúrate de tener instalado Node.js. Luego ejecuta:
+<pre>npm install</pre>
+### 3. Ejecuta el entorno de desarrollo
+<pre>npm run dev</pre>
+Esto abrirá la aplicación en localhost.
+
 <details> <summary><h2>📖 Explicación idea del proyecto</h2></summary>
   
 **Papua95** es una colección de videojuegos con temática “retro” originales o variaciones de otros ya creados, pero con contenido diferencial. Todo esto en una recreación de la interfaz gráfica de Windows 95, combinando elementos y ofreciendo la  interactividad del mismo a su vez cambiando el contenido por uno más humorístico o algún que otro “easter egg” de nosotros los creadores sin que se pierda la seriedad de la recreación.
