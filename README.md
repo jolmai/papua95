@@ -8,7 +8,7 @@
 Sigue estos pasos para ejecutar la aplicación localmente.
 
 ### 1. Clona el repositorio
-git clone https://github.com/jolmai/papua95
+<pre>git clone https://github.com/jolmai/papua95</pre>
 ### 2. Instala las dependencias
 Asegúrate de tener instalado Node.js. Luego ejecuta:
 <pre>npm install</pre>
